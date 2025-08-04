@@ -1,0 +1,115 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import products from '../../data/products.json';
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+---
+
+<Layout title={`${product.name} - Premium Backpack`} description={product.longDescription}>
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <!-- Product Images -->
+        <div class="space-y-4">
+          <div class="aspect-square bg-warm-gray-100 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-sage-200 to-warm-gray-200 flex items-center justify-center">
+              <span class="text-warm-gray-600 font-medium text-xl">{product.name}</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-4">
+            {[1, 2, 3].map((i) => (
+              <div class="aspect-square bg-warm-gray-100 cursor-pointer hover:opacity-75 transition-opacity">
+                <div class="w-full h-full bg-gradient-to-br from-sage-100 to-warm-gray-100 flex items-center justify-center">
+                  <span class="text-warm-gray-500 text-xs">{i}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Product Details -->
+        <div class="space-y-8">
+          <div>
+            <h1 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
+              {product.name}
+            </h1>
+            <div class="flex items-center space-x-4 mb-6">
+              {product.originalPrice && (
+                <span class="text-2xl text-warm-gray-400 line-through">${product.originalPrice}</span>
+              )}
+              <span class="text-3xl font-bold text-warm-gray-900">${product.price}</span>
+            </div>
+            <p class="text-lg text-warm-gray-600 leading-relaxed">
+              {product.longDescription}
+            </p>
+          </div>
+
+          <!-- Color Options -->
+          {product.colors && (
+            <div>
+              <h3 class="text-lg font-semibold text-warm-gray-900 mb-3">Available Colors</h3>
+              <div class="flex space-x-3">
+                {product.colors.map((color) => (
+                  <button class="w-8 h-8 rounded-full border-2 border-warm-gray-300 bg-warm-gray-200 hover:border-sage-500 transition-colors">
+                    <span class="sr-only">{color}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Add to Cart -->
+          <div class="space-y-4">
+            {product.inStock ? (
+              <button class="w-full bg-warm-gray-900 text-white py-4 px-8 font-semibold hover:bg-warm-gray-800 transition-colors">
+                Add to Cart
+              </button>
+            ) : (
+              <button disabled class="w-full bg-warm-gray-300 text-warm-gray-500 py-4 px-8 font-semibold cursor-not-allowed">
+                Out of Stock
+              </button>
+            )}
+            <button class="w-full border border-warm-gray-300 text-warm-gray-700 py-4 px-8 font-semibold hover:bg-warm-gray-50 transition-colors">
+              Add to Wishlist
+            </button>
+          </div>
+
+          <!-- Features -->
+          <div>
+            <h3 class="text-lg font-semibold text-warm-gray-900 mb-4">Key Features</h3>
+            <ul class="space-y-2">
+              {product.features.map((feature) => (
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-sage-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-warm-gray-600">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Specifications -->
+          <div>
+            <h3 class="text-lg font-semibold text-warm-gray-900 mb-4">Specifications</h3>
+            <dl class="space-y-2">
+              {Object.entries(product.specifications).map(([key, value]) => (
+                <div class="flex">
+                  <dt class="font-medium text-warm-gray-700 w-24 capitalize">{key}:</dt>
+                  <dd class="text-warm-gray-600">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

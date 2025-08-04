@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import faqData from '../data/faq.json';
+---
+
+<Layout title="FAQ - Frequently Asked Questions">
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h1 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
+          Frequently Asked Questions
+        </h1>
+        <p class="text-lg text-warm-gray-600">
+          Everything you need to know about our products, shipping, and policies.
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        {faqData.map((faq) => (
+          <div class="border-b border-warm-gray-200 pb-8">
+            <h3 class="text-xl font-semibold text-warm-gray-900 mb-4">
+              {faq.question}
+            </h3>
+            <p class="text-warm-gray-600 leading-relaxed">
+              {faq.answer}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-16 bg-sage-50 rounded-2xl p-8 text-center">
+        <h2 class="font-display text-2xl font-bold text-warm-gray-900 mb-4">
+          Still Have Questions?
+        </h2>
+        <p class="text-warm-gray-600 mb-6">
+          Our customer service team is here to help you find the perfect workspace essentials.
+        </p>
+        <a 
+          href="mailto:hello@essentials.com" 
+          class="inline-flex items-center justify-center px-8 py-3 bg-warm-gray-900 text-white font-medium hover:bg-warm-gray-800 transition-colors"
+        >
+          Contact Support
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "shipping",
+    "question": "What are your shipping options and timeframes?",
+    "answer": "We offer free standard shipping on orders over $150, which typically takes 3-5 business days within the continental US. Express shipping (1-2 business days) is available for $15. International shipping is available to select countries with rates calculated at checkout."
+  },
+  {
+    "id": "returns",
+    "question": "What is your return policy?",
+    "answer": "We offer a 30-day return window for all unused items in original condition. Returns are free for US customers, and we provide a prepaid return label. Items must be returned with all original packaging and tags attached."
+  },
+  {
+    "id": "warranty",
+    "question": "Do your products come with a warranty?",
+    "answer": "Yes, all our backpacks come with a lifetime repair guarantee. We'll repair any manufacturing defects or normal wear and tear free of charge. For accidental damage, we offer repair services at cost."
+  },
+  {
+    "id": "materials",
+    "question": "What materials do you use in your backpacks?",
+    "answer": "We use only premium materials including water-resistant canvas, full-grain leather, and high-performance technical fabrics like ripstop nylon. All hardware is brass or military-grade, and we use YKK zippers throughout our collection."
+  },
+  {
+    "id": "sizing",
+    "question": "How do I choose the right size backpack?",
+    "answer": "Consider your daily carry needs and laptop size. Our Minimal Daily Pack fits up to 15\" laptops and is perfect for everyday use. The Executive Briefpack accommodates 16\" laptops and offers more formal styling. Check the specifications on each product page for detailed dimensions."
+  },
+  {
+    "id": "care",
+    "question": "How should I care for my backpack?",
+    "answer": "For canvas and nylon bags, spot clean with mild soap and water. Leather products should be conditioned every 3-6 months with quality leather conditioner. Avoid machine washing and allow to air dry completely if wet."
+  }
+]

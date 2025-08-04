@@ -1,0 +1,123 @@
+[
+  {
+    "id": "minimal-daily-pack",
+    "slug": "minimal-daily-pack",
+    "name": "Minimal Daily Pack",
+    "price": 189,
+    "originalPrice": null,
+    "category": "backpacks",
+    "featured": true,
+    "description": "A thoughtfully designed everyday carry for the modern professional. Clean lines meet practical functionality.",
+    "longDescription": "The Minimal Daily Pack represents the perfect balance between form and function. Crafted from premium water-resistant canvas with leather accents, this backpack features a dedicated laptop compartment, organizational pockets, and a timeless design that transitions seamlessly from commute to coffee shop to conference room.",
+    "features": [
+      "Premium water-resistant canvas construction",
+      "Dedicated 15\" laptop compartment with padding",
+      "Internal organization system with pen holders",
+      "Comfortable padded shoulder straps",
+      "Lifetime repair guarantee"
+    ],
+    "specifications": {
+      "dimensions": "18\" x 12\" x 6\"",
+      "weight": "2.1 lbs",
+      "capacity": "20L",
+      "material": "Water-resistant canvas, leather trim"
+    },
+    "images": [
+      "/images/minimal-daily-pack-1.jpg",
+      "/images/minimal-daily-pack-2.jpg",
+      "/images/minimal-daily-pack-3.jpg"
+    ],
+    "colors": ["Charcoal", "Sage", "Natural"],
+    "inStock": true
+  },
+  {
+    "id": "executive-briefpack",
+    "slug": "executive-briefpack",
+    "name": "Executive Briefpack",
+    "price": 279,
+    "originalPrice": 320,
+    "category": "backpacks",
+    "featured": true,
+    "description": "Where traditional briefcase elegance meets modern backpack functionality. For the discerning professional.",
+    "longDescription": "The Executive Briefpack challenges conventional thinking about professional carry. This hybrid design combines the formal aesthetic of a traditional briefcase with the ergonomic benefits of a backpack. Premium full-grain leather construction ensures this piece will age beautifully while serving as your trusted work companion.",
+    "features": [
+      "Full-grain leather construction",
+      "Convertible carry system (briefcase/backpack)",
+      "Premium brass hardware",
+      "Organized interior with document sleeves",
+      "TSA-friendly laptop compartment"
+    ],
+    "specifications": {
+      "dimensions": "16\" x 11\" x 4\"",
+      "weight": "3.2 lbs",
+      "capacity": "18L",
+      "material": "Full-grain leather"
+    },
+    "images": [
+      "/images/executive-briefpack-1.jpg",
+      "/images/executive-briefpack-2.jpg"
+    ],
+    "colors": ["Black", "Cognac"],
+    "inStock": true
+  },
+  {
+    "id": "adventure-daypack",
+    "slug": "adventure-daypack",
+    "name": "Adventure Daypack",
+    "price": 149,
+    "originalPrice": null,
+    "category": "backpacks",
+    "featured": false,
+    "description": "Built for exploration. Whether urban or wilderness, this pack adapts to your journey.",
+    "longDescription": "The Adventure Daypack is engineered for versatility. From city streets to mountain trails, its modular design and weather-resistant construction make it the perfect companion for any adventure. The external attachment points and expandable capacity ensure you're ready for whatever the day brings.",
+    "features": [
+      "Weather-resistant ripstop nylon",
+      "Modular attachment system",
+      "Expandable main compartment",
+      "Hydration bladder compatible",
+      "Reflective safety details"
+    ],
+    "specifications": {
+      "dimensions": "19\" x 13\" x 8\"",
+      "weight": "1.8 lbs",
+      "capacity": "25L (expandable to 30L)",
+      "material": "Ripstop nylon, YKK zippers"
+    },
+    "images": [
+      "/images/adventure-daypack-1.jpg",
+      "/images/adventure-daypack-2.jpg"
+    ],
+    "colors": ["Forest", "Stone", "Navy"],
+    "inStock": true
+  },
+  {
+    "id": "tech-organizer-pack",
+    "slug": "tech-organizer-pack",
+    "name": "Tech Organizer Pack",
+    "price": 219,
+    "originalPrice": null,
+    "category": "backpacks",
+    "featured": false,
+    "description": "Purpose-built for the digital nomad. Every cable, device, and accessory has its place.",
+    "longDescription": "The Tech Organizer Pack is a digital professional's dream. With dedicated compartments for laptops, tablets, cables, chargers, and accessories, this pack ensures your tech arsenal stays organized and protected. The thoughtful internal layout and premium materials make it perfect for remote work and travel.",
+    "features": [
+      "Dedicated tech organization system",
+      "Padded laptop and tablet compartments",
+      "Cable management system",
+      "Quick-access front pocket",
+      "Anti-theft hidden zippers"
+    ],
+    "specifications": {
+      "dimensions": "17\" x 12\" x 7\"",
+      "weight": "2.4 lbs",
+      "capacity": "22L",
+      "material": "Ballistic nylon, memory foam padding"
+    },
+    "images": [
+      "/images/tech-organizer-pack-1.jpg",
+      "/images/tech-organizer-pack-2.jpg"
+    ],
+    "colors": ["Black", "Charcoal"],
+    "inStock": false
+  }
+]

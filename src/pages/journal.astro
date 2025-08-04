@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import articles from '../data/articles.json';
+---
+
+<Layout title="Journal - Insights & Stories">
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h1 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
+          Journal
+        </h1>
+        <p class="text-lg text-warm-gray-600 max-w-2xl mx-auto">
+          Insights on design, productivity, and the philosophy behind thoughtful living.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {articles.map((article, index) => (
+          <article class={`${index === 0 ? 'lg:col-span-2' : ''} group cursor-pointer`}>
+            <a href={`/journal/${article.slug}`}>
+              <div class={`${index === 0 ? 'aspect-[16/9]' : 'aspect-square'} bg-warm-gray-100 mb-6 overflow-hidden`}>
+                <div class="w-full h-full bg-gradient-to-br from-sage-200 to-warm-gray-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                  <span class="text-warm-gray-600 font-medium">{article.title}</span>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-center space-x-4 text-sm text-warm-gray-500">
+                  <span>{article.category}</span>
+                  <span>•</span>
+                  <span>{article.readTime}</span>
+                  <span>•</span>
+                  <span>{new Date(article.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                </div>
+                <h2 class={`font-display font-bold text-warm-gray-900 group-hover:text-sage-600 transition-colors ${index === 0 ? 'text-3xl' : 'text-xl'}`}>
+                  {article.title}
+                </h2>
+                <p class="text-warm-gray-600 leading-relaxed">
+                  {article.excerpt}
+                </p>
+                <div class="flex items-center justify-between pt-2">
+                  <span class="text-warm-gray-500 text-sm">By {article.author}</span>
+                  <span class="text-sage-600 font-medium group-hover:underline">Read More →</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

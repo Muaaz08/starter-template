@@ -1,0 +1,38 @@
+[
+  {
+    "id": "minimalist-packing",
+    "slug": "minimalist-packing-guide",
+    "title": "The Art of Minimalist Packing",
+    "excerpt": "Discover how to pack everything you need while maintaining the elegance of traveling light.",
+    "content": "In our hyper-connected world, the art of minimalist packing has become both a necessity and a philosophy. It's about making intentional choices about what truly serves us...",
+    "author": "Sarah Chen",
+    "publishedAt": "2024-01-15",
+    "readTime": "8 min read",
+    "category": "Travel",
+    "image": "/images/minimalist-packing-hero.jpg"
+  },
+  {
+    "id": "workspace-productivity",
+    "slug": "designing-productive-workspace",
+    "title": "Designing a Workspace That Inspires Productivity",
+    "excerpt": "The relationship between our physical environment and mental clarity is profound. Here's how to optimize your space.",
+    "content": "Your workspace is more than just a place to get things done—it's a reflection of your values, priorities, and aspirations...",
+    "author": "Michael Torres",
+    "publishedAt": "2024-01-08",
+    "readTime": "6 min read",
+    "category": "Productivity",
+    "image": "/images/workspace-productivity-hero.jpg"
+  },
+  {
+    "id": "sustainable-materials",
+    "slug": "sustainable-materials-guide",
+    "title": "Understanding Sustainable Materials in Modern Design",
+    "excerpt": "A deep dive into the materials that are shaping the future of responsible manufacturing.",
+    "content": "As consumers become increasingly conscious of their environmental impact, the demand for sustainable materials has never been higher...",
+    "author": "Elena Rodriguez",
+    "publishedAt": "2024-01-01",
+    "readTime": "10 min read",
+    "category": "Sustainability",
+    "image": "/images/sustainable-materials-hero.jpg"
+  }
+]
