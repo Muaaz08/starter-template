@@ -36,34 +36,82 @@ if (category && !isMainShop && !currentCategory) {
 ---
 
 <Layout title={`${currentCategory?.name || 'Shop'} - Premium Workspace Essentials`}>
-  <section class="py-16">
+    <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-12">
-        <h1 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
-          {currentCategory?.name || 'All Products'}
-        </h1>
-        <p class="text-lg text-warm-gray-600 max-w-2xl">
-          Discover our curated collection of premium workspace essentials, each designed to elevate your daily experience.
-        </p>
+      <!-- Mobile: Category Filter Accordion -->
+      <div class="lg:hidden mb-8">
+        <details class="group">
+          <summary class="flex items-center justify-between cursor-pointer focus:outline-none p-4 bg-white rounded-lg shadow-sm">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-warm-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              <span class="font-medium text-warm-gray-900">
+                {currentCategory?.name || 'All Products'} 
+                <span class="text-warm-gray-500 text-sm ml-1">({filteredProducts.length})</span>
+              </span>
+            </div>
+            <svg class="w-5 h-5 text-warm-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="mt-4 space-y-2 px-2">
+            <a 
+              href="/shop"
+              class={`block px-4 py-2 rounded-lg transition-colors ${isMainShop ? 'bg-warm-gray-900 text-white' : 'hover:bg-warm-gray-50'}`}
+            >
+              All Products
+            </a>
+            {categories.map((cat) => (
+              <a 
+                href={`/shop/${cat.slug}`}
+                class={`block px-4 py-2 rounded-lg transition-colors ${category === cat.slug ? 'bg-warm-gray-900 text-white' : 'hover:bg-warm-gray-50'}`}
+              >
+                {cat.name}
+              </a>
+            ))}
+          </div>
+        </details>
       </div>
 
-      <!-- Filter Bar -->
-      <div class="flex flex-wrap gap-4 mb-12 pb-6 border-b border-warm-gray-200">
-        <a 
-          href="/shop/all" 
-          class={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${isMainShop ? 'bg-warm-gray-900 text-white' : 'bg-warm-gray-100 text-warm-gray-700 hover:bg-warm-gray-200'}`}
-        >
-          All Products
-        </a>
-        {categories.map((cat) => (
-          <a 
-            href={`/shop/${cat.slug}`}
-            class={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${category === cat.slug ? 'bg-warm-gray-900 text-white' : 'bg-warm-gray-100 text-warm-gray-700 hover:bg-warm-gray-200'}`}
-          >
-            {cat.name}
-          </a>
-        ))}
-      </div>
+      <div class="lg:grid lg:grid-cols-[280px,1fr] lg:gap-12">
+        <!-- Desktop: Sidebar Filter -->
+        <div class="hidden lg:block">
+          <div class="sticky top-8 space-y-6">
+            <h2 class="font-display text-lg font-semibold text-warm-gray-900 mb-4">Categories</h2>
+            <div class="space-y-2">
+              <a 
+                href="/shop"
+                class={`block px-4 py-2 rounded-lg transition-colors ${isMainShop ? 'bg-warm-gray-900 text-white' : 'text-warm-gray-700 hover:bg-warm-gray-50'}`}
+              >
+                All Products
+                <span class="ml-2 text-sm opacity-75">({products.length})</span>
+              </a>
+              {categories.map((cat) => (
+                <a 
+                  href={`/shop/${cat.slug}`}
+                  class={`block px-4 py-2 rounded-lg transition-colors ${category === cat.slug ? 'bg-warm-gray-900 text-white' : 'text-warm-gray-700 hover:bg-warm-gray-50'}`}
+                >
+                  {cat.name}
+                  <span class="ml-2 text-sm opacity-75">
+                    ({products.filter(p => p.category === cat.slug).length})
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div>
+          <div class="mb-12">
+            <h1 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
+              {currentCategory?.name || 'All Products'}
+            </h1>
+            <p class="text-lg text-warm-gray-600 max-w-2xl">
+              Discover our curated collection of premium workspace essentials, each designed to elevate your daily experience.
+            </p>
+          </div>
 
       <!-- Category Description -->
       {currentCategory && (
