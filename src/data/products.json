@@ -1,5 +1,125 @@
 [
   {
+    "id": "ergonomic-task-chair",
+    "slug": "ergonomic-task-chair",
+    "name": "Ergonomic Task Chair",
+    "price": 599,
+    "originalPrice": 699,
+    "category": "chairs",
+    "featured": true,
+    "description": "Premium ergonomic task chair with adaptive support and intuitive adjustments for all-day comfort.",
+    "longDescription": "Designed for the modern professional who demands both comfort and style. This task chair features advanced ergonomic adjustments, breathable mesh construction, and sophisticated aesthetics that complement any workspace.",
+    "features": [
+      "Adaptive lumbar support system",
+      "4D adjustable armrests",
+      "Synchronized tilt mechanism",
+      "Breathable mesh back",
+      "Memory foam seat cushion"
+    ],
+    "specifications": {
+      "dimensions": "28\"W x 28\"D x 48\"H",
+      "weight": "35 lbs",
+      "seatHeight": "16-21\"",
+      "material": "Premium mesh, aluminum base"
+    },
+    "images": [
+      "/images/ergonomic-task-chair-1.jpg",
+      "/images/ergonomic-task-chair-2.jpg"
+    ],
+    "colors": ["Black", "Grey", "Navy"],
+    "inStock": true
+  },
+  {
+    "id": "executive-leather-chair",
+    "slug": "executive-leather-chair",
+    "name": "Executive Leather Chair",
+    "price": 899,
+    "originalPrice": null,
+    "category": "chairs",
+    "featured": true,
+    "description": "Luxurious full-grain leather executive chair combining timeless elegance with modern ergonomic principles.",
+    "longDescription": "The Executive Leather Chair represents the pinnacle of office seating. Hand-selected full-grain leather, polished aluminum accents, and advanced comfort features create an exceptional seating experience for the discerning professional.",
+    "features": [
+      "Premium full-grain leather upholstery",
+      "Multi-tilt mechanism with position lock",
+      "Waterfall seat edge design",
+      "Adjustable lumbar support",
+      "Polished aluminum base and accents"
+    ],
+    "specifications": {
+      "dimensions": "30\"W x 32\"D x 50\"H",
+      "weight": "45 lbs",
+      "seatHeight": "17-22\"",
+      "material": "Full-grain leather, aluminum"
+    },
+    "images": [
+      "/images/executive-leather-chair-1.jpg",
+      "/images/executive-leather-chair-2.jpg"
+    ],
+    "colors": ["Black", "Cognac", "Deep Brown"],
+    "inStock": true
+  },
+  {
+    "id": "minimalist-desk-lamp",
+    "slug": "minimalist-desk-lamp",
+    "name": "Minimalist Desk Lamp",
+    "price": 129,
+    "originalPrice": null,
+    "category": "accessories",
+    "featured": true,
+    "description": "Sleek and adjustable LED desk lamp with wireless charging base and customizable lighting modes.",
+    "longDescription": "This minimalist desk lamp combines form and function with its clean lines and advanced features. The integrated wireless charging pad and customizable lighting modes make it an essential addition to any modern workspace.",
+    "features": [
+      "Adjustable color temperature",
+      "Touch-sensitive controls",
+      "Wireless phone charging base",
+      "Auto-dimming sensor",
+      "USB-C charging port"
+    ],
+    "specifications": {
+      "dimensions": "6\"W x 16\"H x 8\"D",
+      "weight": "2.8 lbs",
+      "power": "12W LED",
+      "material": "Aluminum, touch-sensitive glass"
+    },
+    "images": [
+      "/images/minimalist-desk-lamp-1.jpg",
+      "/images/minimalist-desk-lamp-2.jpg"
+    ],
+    "colors": ["Silver", "Space Grey", "White"],
+    "inStock": true
+  },
+  {
+    "id": "leather-desk-mat",
+    "slug": "leather-desk-mat",
+    "name": "Leather Desk Mat",
+    "price": 89,
+    "originalPrice": null,
+    "category": "accessories",
+    "featured": false,
+    "description": "Premium full-grain leather desk mat that protects your workspace while adding sophisticated style.",
+    "longDescription": "Crafted from carefully selected full-grain leather, this desk mat ages beautifully while protecting your desk surface. The perfect blend of function and elegance for your workspace.",
+    "features": [
+      "Full-grain leather construction",
+      "Non-slip microfiber base",
+      "Rounded corners",
+      "Water-resistant finish",
+      "Handcrafted edges"
+    ],
+    "specifications": {
+      "dimensions": "30\"W x 17\"D",
+      "weight": "1.2 lbs",
+      "thickness": "2mm",
+      "material": "Full-grain leather, microfiber base"
+    },
+    "images": [
+      "/images/leather-desk-mat-1.jpg",
+      "/images/leather-desk-mat-2.jpg"
+    ],
+    "colors": ["Black", "Tan", "Navy"],
+    "inStock": true
+  },
+  {
     "id": "minimal-daily-pack",
     "slug": "minimal-daily-pack",
     "name": "Minimal Daily Pack",

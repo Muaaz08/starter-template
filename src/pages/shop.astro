@@ -1,20 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import products from '../data/products.json';
+import categories from '../data/categories.json';
 
 const { searchParams } = Astro.url;
 const category = searchParams.get('category');
 const filteredProducts = category 
   ? products.filter(product => product.category === category)
   : products;
+
+const currentCategory = categories.find(cat => cat.slug === category);
 ---
 
-<Layout title="Shop - Premium Backpacks & Workspace Essentials">
+<Layout title={`${currentCategory?.name || 'Shop'} - Premium Workspace Essentials`}>
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mb-12">
         <h1 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
-          {category === 'backpacks' ? 'Backpacks' : 'All Products'}
+          {currentCategory?.name || 'All Products'}
         </h1>
         <p class="text-lg text-warm-gray-600 max-w-2xl">
           Discover our curated collection of premium workspace essentials, each designed to elevate your daily experience.
