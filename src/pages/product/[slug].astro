@@ -12,24 +12,168 @@ export function getStaticPaths() {
 const { product } = Astro.props;
 ---
 
+<script>
+  // Initialize Swiper when the page loads
+  let currentSlide = 0;
+  const totalSlides = document.querySelectorAll('.swiper-slide').length;
+  const swiperWrapper = document.querySelector('.swiper-wrapper');
+  const thumbnails = document.querySelectorAll('.grid-cols-4 button');
+  const prevButton = document.querySelector('.swiper-container button:first-child');
+  const nextButton = document.querySelector('.swiper-container button:last-child');
+
+  // Handle thumbnail clicks
+  thumbnails.forEach((thumb, index) => {
+    thumb.addEventListener('click', () => {
+      goToSlide(index);
+    });
+  });
+
+  // Previous slide
+  prevButton?.addEventListener('click', () => {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    goToSlide(currentSlide);
+  });
+
+  // Next slide
+  nextButton?.addEventListener('click', () => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    goToSlide(currentSlide);
+  });
+
+  // Touch handling for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  swiperWrapper?.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  swiperWrapper?.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchEndX - touchStartX;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        // Swipe right - go to previous
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      } else {
+        // Swipe left - go to next
+        currentSlide = (currentSlide + 1) % totalSlides;
+      }
+      goToSlide(currentSlide);
+    }
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    const offset = -100 * currentSlide;
+    if (swiperWrapper) {
+      swiperWrapper.style.transform = `translateX(${offset}%)`;
+    }
+    
+    // Update thumbnail states
+    thumbnails.forEach((thumb, i) => {
+      if (i === currentSlide) {
+        thumb.classList.add('ring-2', 'ring-sage-500');
+      } else {
+        thumb.classList.remove('ring-2', 'ring-sage-500');
+      }
+    });
+  }
+</script>
+
+<style>
+  .swiper-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .swiper-wrapper {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .swiper-slide {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  /* Mobile swipe indicator animation */
+  @media (max-width: 768px) {
+    .swipe-indicator {
+      animation: fadeInOut 2s infinite;
+    }
+  }
+
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+
+  /* Accordion animations */
+  details[open] summary ~ * {
+    animation: sweep .3s ease-in-out;
+  }
+
+  @keyframes sweep {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
 <Layout title={`${product.name} - Premium Backpack`} description={product.longDescription}>
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-        <!-- Product Images -->
-        <div class="space-y-4">
-          <div class="aspect-square bg-warm-gray-100 overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-sage-200 to-warm-gray-200 flex items-center justify-center">
-              <span class="text-warm-gray-600 font-medium text-xl">{product.name}</span>
+              <!-- Product Images Carousel -->
+        <div class="relative space-y-4">
+          <!-- Main Image -->
+          <div class="aspect-square bg-warm-gray-100 overflow-hidden rounded-2xl relative group">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                {[1, 2, 3, 4].map((i) => (
+                  <div class="swiper-slide">
+                    <div class="aspect-square bg-gradient-to-br from-sage-200 to-warm-gray-200 flex items-center justify-center">
+                      <span class="text-warm-gray-600 font-medium text-xl">{product.name} - View {i}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <!-- Navigation Arrows - Desktop Only -->
+              <div class="hidden md:block">
+                <button class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full shadow-lg flex items-center justify-center text-warm-gray-600 hover:text-warm-gray-900 focus:outline-none group-hover:opacity-100 opacity-0 transition-opacity z-10">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full shadow-lg flex items-center justify-center text-warm-gray-600 hover:text-warm-gray-900 focus:outline-none group-hover:opacity-100 opacity-0 transition-opacity z-10">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Mobile Swipe Indicator -->
+            <div class="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs px-3 py-1 rounded-full">
+              Swipe to view more
             </div>
           </div>
-          <div class="grid grid-cols-3 gap-4">
-            {[1, 2, 3].map((i) => (
-              <div class="aspect-square bg-warm-gray-100 cursor-pointer hover:opacity-75 transition-opacity">
-                <div class="w-full h-full bg-gradient-to-br from-sage-100 to-warm-gray-100 flex items-center justify-center">
-                  <span class="text-warm-gray-500 text-xs">{i}</span>
+
+          <!-- Thumbnail Navigation - Desktop Only -->
+          <div class="hidden md:grid grid-cols-4 gap-4">
+            {[1, 2, 3, 4].map((i) => (
+              <button class="aspect-square bg-warm-gray-100 rounded-lg cursor-pointer hover:opacity-75 transition-opacity focus:outline-none focus:ring-2 focus:ring-sage-500">
+                <div class="w-full h-full bg-gradient-to-br from-sage-100 to-warm-gray-100 flex items-center justify-center rounded-lg">
+                  <span class="text-warm-gray-500 text-xs">View {i}</span>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -37,18 +181,32 @@ const { product } = Astro.props;
         <!-- Product Details -->
         <div class="space-y-8">
           <div>
-            <h1 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
-              {product.name}
-            </h1>
-            <div class="flex items-center space-x-4 mb-6">
+            <div class="flex items-center justify-between mb-4">
+              <h1 class="font-display text-4xl font-bold text-warm-gray-900">
+                {product.name}
+              </h1>
+              <div class="hidden md:block">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-sage-100 text-sage-800">
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  30-Day Trial
+                </span>
+              </div>
+            </div>
+            
+            <div class="flex items-baseline space-x-4 mb-6">
               {product.originalPrice && (
                 <span class="text-2xl text-warm-gray-400 line-through">${product.originalPrice}</span>
               )}
               <span class="text-3xl font-bold text-warm-gray-900">${product.price}</span>
             </div>
-            <p class="text-lg text-warm-gray-600 leading-relaxed">
-              {product.longDescription}
-            </p>
+
+            <div class="prose prose-warm-gray max-w-none">
+              <p class="text-lg text-warm-gray-600 leading-relaxed">
+                {product.longDescription}
+              </p>
+            </div>
           </div>
 
           <!-- Color Options -->
@@ -57,7 +215,7 @@ const { product } = Astro.props;
               <h3 class="text-lg font-semibold text-warm-gray-900 mb-3">Available Colors</h3>
               <div class="flex space-x-3">
                 {product.colors.map((color) => (
-                  <button class="w-8 h-8 rounded-full border-2 border-warm-gray-300 bg-warm-gray-200 hover:border-sage-500 transition-colors">
+                  <button class="w-8 h-8 rounded-full border-2 border-warm-gray-300 bg-warm-gray-200 hover:border-sage-500 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sage-500">
                     <span class="sr-only">{color}</span>
                   </button>
                 ))}
@@ -68,7 +226,7 @@ const { product } = Astro.props;
           <!-- Add to Cart -->
           <div class="space-y-4">
             {product.inStock ? (
-              <button class="w-full bg-warm-gray-900 text-white py-4 px-8 font-semibold hover:bg-warm-gray-800 transition-colors">
+              <button class="w-full bg-warm-gray-900 text-white py-4 px-8 font-semibold hover:bg-warm-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-warm-gray-900">
                 Add to Cart
               </button>
             ) : (
@@ -76,37 +234,109 @@ const { product } = Astro.props;
                 Out of Stock
               </button>
             )}
-            <button class="w-full border border-warm-gray-300 text-warm-gray-700 py-4 px-8 font-semibold hover:bg-warm-gray-50 transition-colors">
+            <button class="w-full border border-warm-gray-300 text-warm-gray-700 py-4 px-8 font-semibold hover:bg-warm-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-warm-gray-300">
               Add to Wishlist
             </button>
           </div>
 
-          <!-- Features -->
-          <div>
-            <h3 class="text-lg font-semibold text-warm-gray-900 mb-4">Key Features</h3>
-            <ul class="space-y-2">
-              {product.features.map((feature) => (
-                <li class="flex items-start">
-                  <svg class="w-5 h-5 text-sage-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span class="text-warm-gray-600">{feature}</span>
-                </li>
-              ))}
-            </ul>
+          <!-- Mobile: 30-Day Trial Badge -->
+          <div class="md:hidden p-4 bg-sage-50 rounded-lg">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <svg class="w-8 h-8 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="ml-4">
+                <h4 class="text-sm font-medium text-sage-900">30-Day Trial</h4>
+                <p class="mt-1 text-sm text-sage-600">Try it risk-free for 30 days</p>
+              </div>
+            </div>
           </div>
 
-          <!-- Specifications -->
-          <div>
-            <h3 class="text-lg font-semibold text-warm-gray-900 mb-4">Specifications</h3>
-            <dl class="space-y-2">
-              {Object.entries(product.specifications).map(([key, value]) => (
-                <div class="flex">
-                  <dt class="font-medium text-warm-gray-700 w-24 capitalize">{key}:</dt>
-                  <dd class="text-warm-gray-600">{value}</dd>
+          <!-- Desktop: Features and Specs Table -->
+          <div class="hidden md:block">
+            <div class="border-t border-warm-gray-200 pt-8">
+              <h3 class="text-lg font-semibold text-warm-gray-900 mb-6">Features & Specifications</h3>
+              <div class="grid grid-cols-2 gap-8">
+                <!-- Features List -->
+                <div>
+                  <h4 class="font-medium text-warm-gray-900 mb-4">Key Features</h4>
+                  <ul class="space-y-3">
+                    {product.features.map((feature) => (
+                      <li class="flex items-start">
+                        <svg class="w-5 h-5 text-sage-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span class="text-warm-gray-600">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              ))}
-            </dl>
+
+                <!-- Specifications Table -->
+                <div>
+                  <h4 class="font-medium text-warm-gray-900 mb-4">Specifications</h4>
+                  <dl class="divide-y divide-warm-gray-200">
+                    {Object.entries(product.specifications).map(([key, value]) => (
+                      <div class="py-3 flex justify-between">
+                        <dt class="font-medium text-warm-gray-500 capitalize">{key}</dt>
+                        <dd class="text-warm-gray-900">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile: Accordion Specs -->
+          <div class="md:hidden">
+            <div class="border-t border-warm-gray-200 pt-6">
+              <!-- Features Accordion -->
+              <details class="group mb-4">
+                <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
+                  <h3 class="text-lg font-semibold text-warm-gray-900">Key Features</h3>
+                  <span class="ml-6 flex-shrink-0">
+                    <svg class="w-6 h-6 text-warm-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </span>
+                </summary>
+                <div class="mt-4 space-y-3">
+                  {product.features.map((feature) => (
+                    <div class="flex items-start">
+                      <svg class="w-5 h-5 text-sage-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="text-warm-gray-600">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </details>
+
+              <!-- Specifications Accordion -->
+              <details class="group">
+                <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
+                  <h3 class="text-lg font-semibold text-warm-gray-900">Specifications</h3>
+                  <span class="ml-6 flex-shrink-0">
+                    <svg class="w-6 h-6 text-warm-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </span>
+                </summary>
+                <div class="mt-4">
+                  <dl class="divide-y divide-warm-gray-200">
+                    {Object.entries(product.specifications).map(([key, value]) => (
+                      <div class="py-3 flex justify-between">
+                        <dt class="font-medium text-warm-gray-500 capitalize">{key}</dt>
+                        <dd class="text-warm-gray-900">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </details>
+            </div>
           </div>
         </div>
       </div>
