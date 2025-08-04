@@ -2,7 +2,34 @@
 import Layout from '../layouts/Layout.astro';
 import products from '../data/products.json';
 
-const featuredProducts = products.filter(product => product.featured);
+const categories = [
+  {
+    name: "Professional Backpacks",
+    slug: "backpacks",
+    description: "Premium carry solutions for the modern professional, from minimal daily packs to executive briefcases.",
+    image: "/images/category-backpacks.jpg"
+  },
+  {
+    name: "Ergonomic Chairs",
+    slug: "chairs",
+    description: "Thoughtfully designed seating that supports your best work, engineered for all-day comfort.",
+    image: "/images/category-chairs.jpg"
+  },
+  {
+    name: "Work Accessories",
+    slug: "accessories",
+    description: "Essential tools and accessories that enhance your workspace and streamline your workflow.",
+    image: "/images/category-accessories.jpg"
+  }
+];
+
+const productsByCategory = products.reduce((acc, product) => {
+  if (!acc[product.category]) {
+    acc[product.category] = [];
+  }
+  acc[product.category].push(product);
+  return acc;
+}, {});
 ---
 
 <Layout title="Essentials - Premium Workspace Essentials">
@@ -248,42 +275,87 @@ const featuredProducts = products.filter(product => product.featured);
     </div>
   </section>
 
-  <!-- Featured Products -->
+  <!-- Product Categories -->
   <section class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
-          Featured Collection
+          Shop by Category
         </h2>
         <p class="text-lg text-warm-gray-600 max-w-2xl mx-auto">
-          Our most popular pieces, chosen by professionals who demand both style and substance in their everyday carry.
+          Discover our curated collection of workspace essentials, each designed to elevate your professional environment.
         </p>
       </div>
+
+      <!-- Desktop Filters - Shown on md and up -->
+      <div class="hidden md:block mb-8">
+        <div class="flex items-center justify-center space-x-4">
+          <button class="px-4 py-2 text-warm-gray-600 hover:text-warm-gray-900 transition-colors">
+            Material
+            <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <button class="px-4 py-2 text-warm-gray-600 hover:text-warm-gray-900 transition-colors">
+            Size
+            <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <button class="px-4 py-2 text-warm-gray-600 hover:text-warm-gray-900 transition-colors">
+            Use Case
+            <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Filters - Accordion style -->
+      <div class="md:hidden mb-8">
+        <details class="group mb-2">
+          <summary class="flex items-center justify-between p-4 bg-warm-gray-50 cursor-pointer">
+            <span class="text-warm-gray-900 font-medium">Filter Products</span>
+            <svg class="w-5 h-5 text-warm-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="p-4 bg-white border-t border-warm-gray-100">
+            <div class="space-y-4">
+              <button class="w-full text-left px-2 py-1 text-warm-gray-600">Material</button>
+              <button class="w-full text-left px-2 py-1 text-warm-gray-600">Size</button>
+              <button class="w-full text-left px-2 py-1 text-warm-gray-600">Use Case</button>
+            </div>
+          </div>
+        </details>
+      </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {featuredProducts.map((product) => (
+      <!-- Category Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {categories.map((category) => (
           <div class="group cursor-pointer">
-            <a href={`/product/${product.slug}`}>
-              <div class="aspect-square bg-warm-gray-100 mb-6 overflow-hidden">
-                <div class="w-full h-full bg-gradient-to-br from-sage-200 to-warm-gray-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                  <span class="text-warm-gray-600 font-medium">{product.name}</span>
+            <a href={`/shop?category=${category.slug}`} class="block">
+              <div class="aspect-[4/3] bg-white mb-6 overflow-hidden rounded-2xl">
+                <div class="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-700 relative">
+                  {/* Placeholder for category image - replace with actual images */}
+                  <div class="absolute inset-0 bg-gradient-to-br from-warm-gray-100 to-sage-100 group-hover:opacity-80 transition-opacity"></div>
+                  <div class="relative z-10 text-center">
+                    <div class="w-24 h-24 bg-warm-gray-800 rounded-xl mx-auto mb-4 shadow-lg"></div>
+                    <h3 class="font-display text-2xl font-semibold text-warm-gray-900 group-hover:text-sage-600 transition-colors">
+                      {category.name}
+                    </h3>
+                  </div>
                 </div>
               </div>
               <div class="space-y-2">
-                <h3 class="font-display text-2xl font-semibold text-warm-gray-900 group-hover:text-sage-600 transition-colors">
-                  {product.name}
-                </h3>
                 <p class="text-warm-gray-600 leading-relaxed">
-                  {product.description}
+                  {category.description}
                 </p>
-                <div class="flex items-center justify-between pt-2">
-                  <div class="flex items-center space-x-2">
-                    {product.originalPrice && (
-                      <span class="text-warm-gray-400 line-through">${product.originalPrice}</span>
-                    )}
-                    <span class="text-xl font-semibold text-warm-gray-900">${product.price}</span>
-                  </div>
-                  <span class="text-sage-600 font-medium group-hover:underline">View Details →</span>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-warm-gray-500">
+                    {productsByCategory[category.slug]?.length || 0} Products
+                  </span>
+                  <span class="text-sage-600 font-medium group-hover:underline">Browse Collection →</span>
                 </div>
               </div>
             </a>
