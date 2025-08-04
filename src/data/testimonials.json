@@ -1,0 +1,31 @@
+{
+  "testimonials": [
+    {
+      "id": "1",
+      "name": "Sarah Thompson",
+      "role": "Creative Director",
+      "company": "Design Studio Co.",
+      "image": "/images/testimonials/sarah.jpg",
+      "quote": "The attention to detail in these products is remarkable. The ergonomic design of my backpack has completely transformed my daily commute. It's not just a bag; it's a daily companion that understands the needs of a creative professional.",
+      "rating": 4
+    },
+    {
+      "id": "2",
+      "name": "Michael Chen",
+      "role": "Tech Lead",
+      "company": "Innovation Labs",
+      "image": "/images/testimonials/michael.jpg",
+      "quote": "As someone who carries multiple devices, the intelligent compartment system is a game-changer. The weather-resistant materials have protected my gear through unexpected rain more times than I can count.",
+      "rating": 4.5
+    },
+    {
+      "id": "3",
+      "name": "Emma Rodriguez",
+      "role": "Digital Nomad",
+      "company": "Remote First",
+      "image": "/images/testimonials/emma.jpg",
+      "quote": "Working from different locations requires gear that adapts. This backpack moves seamlessly from coffee shops to client meetings, keeping me organized and looking professional everywhere I go.",
+      "rating": 5
+    }
+  ]
+}

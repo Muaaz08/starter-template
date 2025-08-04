@@ -1,0 +1,43 @@
+---
+import TestimonialCard from './TestimonialCard.astro';
+import testimonialData from '../data/testimonials.json';
+
+const { testimonials } = testimonialData;
+---
+
+<section class="py-20 bg-gradient-to-b from-warm-gray-50/50 to-sage-50/50 snap-start" id="testimonials">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
+        Trusted by Professionals
+      </h2>
+      <p class="text-lg text-warm-gray-600 max-w-2xl mx-auto">
+        Hear from our community of creative professionals who have made our products an essential part of their daily journey.
+      </p>
+    </div>
+
+    {/* Desktop: Grid layout */}
+    <div class="hidden md:grid md:grid-cols-3 gap-8">
+      {testimonials.map((testimonial) => (
+        <TestimonialCard {...testimonial} />
+      ))}
+    </div>
+
+    {/* Mobile: Carousel/Scroll layout */}
+    <div class="md:hidden -mx-4">
+      <div class="flex overflow-x-auto snap-x snap-mandatory pb-8 px-4 space-x-4">
+        {testimonials.map((testimonial) => (
+          <div class="flex-none w-full snap-center">
+            <TestimonialCard {...testimonial} />
+          </div>
+        ))}
+      </div>
+      {/* Scroll indicator dots */}
+      <div class="flex justify-center space-x-2 mt-4">
+        {testimonials.map((_, index) => (
+          <div class="w-2 h-2 rounded-full bg-warm-gray-300"></div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import products from '../data/products.json';
 import categories from '../data/categories.json';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
 
 const productsByCategory = products.reduce((acc: Record<string, typeof products[number][]>, product) => {
   if (!acc[product.category]) {
@@ -331,4 +332,7 @@ const productsByCategory = products.reduce((acc: Record<string, typeof products[
       </div>
     </div>
   </section>
+
+  {/* Testimonials Section */}
+  <TestimonialsSection />
 </Layout>
