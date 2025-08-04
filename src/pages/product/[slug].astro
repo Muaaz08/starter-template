@@ -5,11 +5,16 @@ import products from '../../data/products.json';
 export function getStaticPaths() {
   return products.map((product) => ({
     params: { slug: product.slug },
-    props: { product },
+    props: { 
+      product,
+      relatedProducts: products
+        .filter(p => p.category === product.category && p.slug !== product.slug)
+        .slice(0, 4)
+    },
   }));
 }
 
-const { product } = Astro.props;
+const { product, relatedProducts } = Astro.props;
 ---
 
 <script>
@@ -342,4 +347,79 @@ const { product } = Astro.props;
       </div>
     </div>
   </section>
+
+  <!-- Related Products -->
+  {relatedProducts.length > 0 && (
+    <section class="py-16 bg-warm-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="font-display text-3xl font-bold text-warm-gray-900 mb-4">
+            More from {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
+          </h2>
+          <p class="text-lg text-warm-gray-600 max-w-2xl mx-auto">
+            Discover other premium products from our {product.category} collection
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {relatedProducts.map((relatedProduct) => (
+            <div class="group">
+              <a href={`/product/${relatedProduct.slug}`} class="block h-full bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+                <div class="aspect-square bg-warm-gray-50 relative overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-sage-100/50 to-warm-gray-100/50 group-hover:opacity-90 transition-opacity"></div>
+                  <div class="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <div class="relative w-3/4 h-3/4">
+                      <div class="w-full h-full bg-warm-gray-200 rounded-lg shadow-lg flex items-center justify-center">
+                        <span class="text-warm-gray-600 font-medium">{relatedProduct.name}</span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Badge for special states */}
+                  {(!relatedProduct.inStock || relatedProduct.originalPrice) && (
+                    <div class="absolute top-4 right-4">
+                      {!relatedProduct.inStock ? (
+                        <span class="bg-warm-gray-900/90 text-white px-3 py-1 text-sm font-medium rounded-full">
+                          Out of Stock
+                        </span>
+                      ) : relatedProduct.originalPrice && (
+                        <span class="bg-sage-600/90 text-white px-3 py-1 text-sm font-medium rounded-full">
+                          Sale
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+                <div class="p-6">
+                  <h3 class="font-display text-lg font-semibold text-warm-gray-900 group-hover:text-sage-600 transition-colors mb-2">
+                    {relatedProduct.name}
+                  </h3>
+                  <div class="flex items-baseline gap-2 mb-2">
+                    {relatedProduct.originalPrice && (
+                      <span class="text-sm text-warm-gray-400 line-through">${relatedProduct.originalPrice}</span>
+                    )}
+                    <span class="text-lg font-semibold text-warm-gray-900">${relatedProduct.price}</span>
+                  </div>
+                  <p class="text-warm-gray-600 text-sm line-clamp-2">
+                    {relatedProduct.description}
+                  </p>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <div class="text-center mt-12">
+          <a 
+            href={`/shop/${product.category}`}
+            class="inline-flex items-center justify-center px-8 py-3 border border-warm-gray-300 text-base font-medium rounded-lg text-warm-gray-700 bg-white hover:bg-warm-gray-50 transition-colors"
+          >
+            View All {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
 </Layout>
