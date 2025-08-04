@@ -271,7 +271,7 @@ const productsByCategory = products.reduce((acc: Record<string, typeof products[
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {categories.map((category) => (
           <div class="group cursor-pointer">
-            <a href={`/shop?category=${category.slug}`} class="block">
+            <a href={`/shop/${category.slug}`} class="block">
               <div class="aspect-[4/3] bg-white mb-6 overflow-hidden rounded-2xl">
                 <div class="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-700 relative">
                   {/* Placeholder for category image - replace with actual images */}
@@ -301,60 +301,4 @@ const productsByCategory = products.reduce((acc: Record<string, typeof products[
       </div>
     </div>
   </section>
-
-  <!-- Philosophy Section -->
-  <!-- <section class="py-20 bg-sage-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <h2 class="font-display text-4xl font-bold text-warm-gray-900 mb-6">
-            Quality Over Quantity
-          </h2>
-          <p class="text-lg text-warm-gray-600 mb-6 leading-relaxed">
-            In a world of disposable goods, we choose a different path. Each piece is crafted to last, designed to age beautifully, and built to serve you faithfully for years to come.
-          </p>
-          <p class="text-lg text-warm-gray-600 mb-8 leading-relaxed">
-            We believe that true luxury lies not in excess, but in the perfect execution of essential function. Every stitch, every material choice, every design decision is made with your daily experience in mind.
-          </p>
-          <a href="/about" class="inline-flex items-center text-sage-600 font-semibold hover:text-sage-700 transition-colors">
-            Learn More About Our Process
-            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </div>
-        <div class="aspect-square bg-gradient-to-br from-warm-gray-100 to-sage-100 rounded-2xl flex items-center justify-center">
-          <div class="text-center">
-            <div class="w-32 h-32 bg-warm-gray-800 rounded-full mx-auto mb-4"></div>
-            <p class="text-warm-gray-600 font-medium">Craftsmanship</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- Newsletter -->
-  <!-- <section class="py-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="font-display text-3xl font-bold text-warm-gray-900 mb-4">
-        Stay Informed
-      </h2>
-      <p class="text-lg text-warm-gray-600 mb-8">
-        Subscribe to receive updates on new arrivals, editorial content, and exclusive access to limited releases.
-      </p>
-      <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-        <input 
-          type="email" 
-          placeholder="Your email address" 
-          class="flex-1 px-4 py-3 border border-warm-gray-300 rounded-none focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent"
-        />
-        <button 
-          type="submit" 
-          class="px-8 py-3 bg-warm-gray-900 text-white font-medium rounded-none hover:bg-warm-gray-800 transition-colors"
-        >
-          Subscribe
-        </button>
-      </form>
-    </div>
-  </section> -->
 </Layout>
