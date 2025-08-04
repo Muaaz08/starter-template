@@ -37,6 +37,217 @@ const featuredProducts = products.filter(product => product.featured);
     </div>
   </section>
 
+  <!-- Feature Highlights -->
+  <section class="py-20 bg-gradient-to-b from-sage-50/50 to-warm-gray-50/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl font-bold text-warm-gray-900 mb-4">
+          Designed for Life
+        </h2>
+        <p class="text-lg text-warm-gray-600 max-w-2xl mx-auto">
+          Every detail crafted with purpose, every feature tested by professionals who demand excellence.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Modular Storage -->
+        <div class="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-warm-gray-100">
+          <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 bg-sage-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-sage-200 transition-colors duration-300">
+              <svg class="w-8 h-8 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-warm-gray-900 mb-3">
+              Modular Storage
+            </h3>
+            <p class="text-warm-gray-600 leading-relaxed">
+              Intelligent compartment system adapts to your needs. Dedicated spaces for laptop, documents, and daily essentials keep everything organized.
+            </p>
+          </div>
+        </div>
+
+        <!-- Water-Resistant -->
+        <div class="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-warm-gray-100">
+          <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 bg-sage-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-sage-200 transition-colors duration-300">
+              <svg class="w-8 h-8 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 21h10a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v7zM9 5a2 2 0 012-2h2a2 2 0 012 2v6a2 2 0 01-2 2h-2a2 2 0 01-2-2V5z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-warm-gray-900 mb-3">
+              Weather Protection
+            </h3>
+            <p class="text-warm-gray-600 leading-relaxed">
+              Premium water-resistant materials and sealed construction protect your valuables from unexpected weather and daily wear.
+            </p>
+          </div>
+        </div>
+
+        <!-- Ergonomic Design -->
+        <div class="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-warm-gray-100">
+          <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 bg-sage-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-sage-200 transition-colors duration-300">
+              <svg class="w-8 h-8 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-warm-gray-900 mb-3">
+              Ergonomic Comfort
+            </h3>
+            <p class="text-warm-gray-600 leading-relaxed">
+              Thoughtfully designed straps and weight distribution reduce fatigue during long commutes and extended use.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lifestyle Section -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl font-bold text-warm-gray-900 mb-4">
+          In Your Daily Life
+        </h2>
+        <p class="text-lg text-warm-gray-600 max-w-2xl mx-auto">
+          See how our essentials integrate seamlessly into the moments that matter most.
+        </p>
+      </div>
+      
+      <!-- Desktop: Side-by-side layout -->
+      <div class="hidden md:grid md:grid-cols-2 gap-8">
+        <div class="group cursor-pointer">
+          <div class="aspect-[4/5] bg-gradient-to-br from-warm-gray-100 to-sage-100 rounded-2xl overflow-hidden mb-6">
+            <div class="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
+              <div class="text-center">
+                <div class="w-24 h-16 bg-warm-gray-800 rounded-lg mx-auto mb-4 shadow-lg"></div>
+                <div class="w-16 h-12 bg-sage-600 rounded mx-auto mb-2"></div>
+                <div class="flex space-x-2 justify-center">
+                  <div class="w-3 h-3 bg-warm-gray-600 rounded-full"></div>
+                  <div class="w-8 h-3 bg-warm-gray-400 rounded-full"></div>
+                  <div class="w-3 h-3 bg-warm-gray-600 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <h3 class="font-display text-2xl font-semibold text-warm-gray-900 group-hover:text-sage-600 transition-colors">
+              The Modern Workspace
+            </h3>
+            <p class="text-warm-gray-600 leading-relaxed">
+              From the home office to co-working spaces, our backpacks keep your essentials organized and within reach. The clean aesthetic complements any professional environment while the thoughtful organization system ensures you're always prepared.
+            </p>
+            <div class="flex items-center text-sm text-warm-gray-500">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Home Office • Co-working • Meeting Rooms
+            </div>
+          </div>
+        </div>
+
+        <div class="group cursor-pointer">
+          <div class="aspect-[4/5] bg-gradient-to-br from-sage-100 to-warm-gray-100 rounded-2xl overflow-hidden mb-6">
+            <div class="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
+              <div class="text-center">
+                <div class="w-20 h-20 bg-warm-gray-800 rounded-full mx-auto mb-4 shadow-lg"></div>
+                <div class="flex space-x-1 justify-center mb-2">
+                  <div class="w-2 h-8 bg-sage-600 rounded-full"></div>
+                  <div class="w-2 h-6 bg-warm-gray-400 rounded-full"></div>
+                  <div class="w-2 h-10 bg-sage-600 rounded-full"></div>
+                  <div class="w-2 h-4 bg-warm-gray-400 rounded-full"></div>
+                </div>
+                <div class="w-16 h-2 bg-warm-gray-600 rounded-full mx-auto"></div>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <h3 class="font-display text-2xl font-semibold text-warm-gray-900 group-hover:text-sage-600 transition-colors">
+              The Daily Commute
+            </h3>
+            <p class="text-warm-gray-600 leading-relaxed">
+              Whether cycling through the city or catching the morning train, our backpacks are designed for movement. Comfortable straps, secure closures, and weather-resistant materials make every journey effortless.
+            </p>
+            <div class="flex items-center text-sm text-warm-gray-500">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              Bike Commute • Public Transit • Walking
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mobile: Vertical scroll layout -->
+      <div class="md:hidden space-y-12">
+        <div class="text-center">
+          <div class="aspect-[4/3] bg-gradient-to-br from-warm-gray-100 to-sage-100 rounded-2xl overflow-hidden mb-6">
+            <div class="w-full h-full flex items-center justify-center">
+              <div class="text-center">
+                <div class="w-20 h-14 bg-warm-gray-800 rounded-lg mx-auto mb-3 shadow-lg"></div>
+                <div class="w-12 h-10 bg-sage-600 rounded mx-auto mb-2"></div>
+                <div class="flex space-x-1 justify-center">
+                  <div class="w-2 h-2 bg-warm-gray-600 rounded-full"></div>
+                  <div class="w-6 h-2 bg-warm-gray-400 rounded-full"></div>
+                  <div class="w-2 h-2 bg-warm-gray-600 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <h3 class="font-display text-xl font-semibold text-warm-gray-900">
+              The Modern Workspace
+            </h3>
+            <p class="text-warm-gray-600 leading-relaxed text-sm">
+              From the home office to co-working spaces, our backpacks keep your essentials organized and within reach.
+            </p>
+            <div class="flex items-center justify-center text-xs text-warm-gray-500">
+              <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Home Office • Co-working • Meetings
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <div class="aspect-[4/3] bg-gradient-to-br from-sage-100 to-warm-gray-100 rounded-2xl overflow-hidden mb-6">
+            <div class="w-full h-full flex items-center justify-center">
+              <div class="text-center">
+                <div class="w-16 h-16 bg-warm-gray-800 rounded-full mx-auto mb-3 shadow-lg"></div>
+                <div class="flex space-x-1 justify-center mb-2">
+                  <div class="w-1 h-6 bg-sage-600 rounded-full"></div>
+                  <div class="w-1 h-4 bg-warm-gray-400 rounded-full"></div>
+                  <div class="w-1 h-8 bg-sage-600 rounded-full"></div>
+                  <div class="w-1 h-3 bg-warm-gray-400 rounded-full"></div>
+                </div>
+                <div class="w-12 h-1 bg-warm-gray-600 rounded-full mx-auto"></div>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <h3 class="font-display text-xl font-semibold text-warm-gray-900">
+              The Daily Commute
+            </h3>
+            <p class="text-warm-gray-600 leading-relaxed text-sm">
+              Whether cycling through the city or catching the morning train, designed for movement and comfort.
+            </p>
+            <div class="flex items-center justify-center text-xs text-warm-gray-500">
+              <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              Bike • Transit • Walking
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Featured Products -->
   <section class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
