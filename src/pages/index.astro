@@ -267,49 +267,6 @@ const productsByCategory = products.reduce((acc: Record<string, typeof products[
         </p>
       </div>
 
-      <!-- Desktop Filters - Shown on md and up -->
-      <div class="hidden md:block mb-8">
-        <div class="flex items-center justify-center space-x-4">
-          <button class="px-4 py-2 text-warm-gray-600 hover:text-warm-gray-900 transition-colors">
-            Material
-            <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <button class="px-4 py-2 text-warm-gray-600 hover:text-warm-gray-900 transition-colors">
-            Size
-            <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <button class="px-4 py-2 text-warm-gray-600 hover:text-warm-gray-900 transition-colors">
-            Use Case
-            <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile Filters - Accordion style -->
-      <div class="md:hidden mb-8">
-        <details class="group mb-2">
-          <summary class="flex items-center justify-between p-4 bg-warm-gray-50 cursor-pointer">
-            <span class="text-warm-gray-900 font-medium">Filter Products</span>
-            <svg class="w-5 h-5 text-warm-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </summary>
-          <div class="p-4 bg-white border-t border-warm-gray-100">
-            <div class="space-y-4">
-              <button class="w-full text-left px-2 py-1 text-warm-gray-600">Material</button>
-              <button class="w-full text-left px-2 py-1 text-warm-gray-600">Size</button>
-              <button class="w-full text-left px-2 py-1 text-warm-gray-600">Use Case</button>
-            </div>
-          </div>
-        </details>
-      </div>
-      
       <!-- Category Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {categories.map((category) => (
