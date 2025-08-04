@@ -34,5 +34,17 @@
     "readTime": "10 min read",
     "category": "Sustainability",
     "image": "/images/sustainable-materials-hero.jpg"
+  },
+  {
+    "id": "minimalist-packing",
+    "slug": "minimalist-packing-guide",
+    "title": "The Art of Minimalist Packing",
+    "excerpt": "Discover how to pack everything you need while maintaining the elegance of traveling light.",
+    "content": "In our hyper-connected world, the art of minimalist packing has become both a necessity and a philosophy. It's about making intentional choices about what truly serves us...",
+    "author": "Sarah Chen",
+    "publishedAt": "2024-01-01",
+    "readTime": "8 min read",
+    "category": "Travel",
+    "image": "/images/minimalist-packing-hero.jpg"
   }
 ]

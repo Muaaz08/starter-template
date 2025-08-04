@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import articles from '../../data/articles.json';
+
+export function getStaticPaths() {
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+
+// Format the date
+const publishedDate = new Date(article.publishedAt).toLocaleDateString('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric'
+});
+---
+
+<Layout title={`${article.title} - Journal`} description={article.excerpt}>
+  <article class="py-16 sm:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Article Header -->
+      <header class="text-center mb-16">
+        <div class="flex items-center justify-center gap-4 text-sm text-warm-gray-600 mb-6">
+          <span>{article.category}</span>
+          <span>•</span>
+          <span>{article.readTime}</span>
+          <span>•</span>
+          <time datetime={article.publishedAt}>{publishedDate}</time>
+        </div>
+        <h1 class="font-display text-4xl md:text-5xl font-bold text-warm-gray-900 mb-8">
+          {article.title}
+        </h1>
+        <p class="text-xl text-warm-gray-600 max-w-2xl mx-auto mb-8">
+          {article.excerpt}
+        </p>
+        <div class="flex items-center justify-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-warm-gray-200"></div>
+          <div class="text-left">
+            <div class="font-medium text-warm-gray-900">{article.author}</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      <div class="aspect-[16/9] bg-warm-gray-100 rounded-2xl overflow-hidden mb-16">
+        {article.image ? (
+          <img
+            src={article.image}
+            alt={article.title}
+            class="w-full h-full object-cover"
+          />
+        ) : (
+          <div class="w-full h-full bg-gradient-to-br from-sage-100 to-warm-gray-100 flex items-center justify-center">
+            <div class="text-warm-gray-500">No image available</div>
+          </div>
+        )}
+      </div>
+
+      <!-- Article Content -->
+      <div class="prose prose-lg prose-warm-gray max-w-none">
+        {article.content.split('\n\n').map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+
+      <!-- Article Footer -->
+      <footer class="mt-16 pt-8 border-t border-warm-gray-200">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-warm-gray-200"></div>
+            <div>
+              <div class="font-medium text-warm-gray-900">{article.author}</div>
+              <div class="text-warm-gray-600">
+                <time datetime={article.publishedAt}>{publishedDate}</time>
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <button class="text-warm-gray-600 hover:text-warm-gray-900">
+              Share on Twitter
+            </button>
+            <button class="text-warm-gray-600 hover:text-warm-gray-900">
+              Share on LinkedIn
+            </button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </article>
+</Layout>
