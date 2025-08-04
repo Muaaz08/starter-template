@@ -1,0 +1,167 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import products from '../../data/products.json';
+import categories from '../../data/categories.json';
+
+// Define static paths for all categories
+export async function getStaticPaths() {
+  return [
+    // Generate path for main shop page
+    { params: { category: 'all' } },
+    // Generate paths for each category
+    ...categories.map(category => ({
+      params: { category: category.slug }
+    }))
+  ];
+}
+
+// Get category from URL path instead of search params
+const { category } = Astro.params;
+
+// Determine if we're on the main shop page or a category page
+const isMainShop = !category || category === 'all';
+
+// Filter products based on category
+const filteredProducts = isMainShop
+  ? products
+  : products.filter(product => product.category === category);
+
+// Get current category details
+const currentCategory = isMainShop ? null : categories.find(cat => cat.slug === category);
+
+// If invalid category is requested, return 404
+if (category && !isMainShop && !currentCategory) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={`${currentCategory?.name || 'Shop'} - Premium Workspace Essentials`}>
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <h1 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
+          {currentCategory?.name || 'All Products'}
+        </h1>
+        <p class="text-lg text-warm-gray-600 max-w-2xl">
+          Discover our curated collection of premium workspace essentials, each designed to elevate your daily experience.
+        </p>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="flex flex-wrap gap-4 mb-12 pb-6 border-b border-warm-gray-200">
+        <a 
+          href="/shop/all" 
+          class={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${isMainShop ? 'bg-warm-gray-900 text-white' : 'bg-warm-gray-100 text-warm-gray-700 hover:bg-warm-gray-200'}`}
+        >
+          All Products
+        </a>
+        {categories.map((cat) => (
+          <a 
+            href={`/shop/${cat.slug}`}
+            class={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${category === cat.slug ? 'bg-warm-gray-900 text-white' : 'bg-warm-gray-100 text-warm-gray-700 hover:bg-warm-gray-200'}`}
+          >
+            {cat.name}
+          </a>
+        ))}
+      </div>
+
+      <!-- Category Description -->
+      {currentCategory && (
+        <div class="mb-12">
+          <p class="text-lg text-warm-gray-600">
+            {currentCategory.description}
+          </p>
+        </div>
+      )}
+
+      {/* No Results Message */}
+      {filteredProducts.length === 0 ? (
+        <div class="text-center py-12">
+          <div class="mb-6">
+            <div class="w-16 h-16 bg-warm-gray-100 rounded-full mx-auto flex items-center justify-center">
+              <svg class="w-8 h-8 text-warm-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-lg font-medium text-warm-gray-900 mb-2">No products found</h3>
+          <p class="text-warm-gray-600 mb-8">We couldn't find any products in this category.</p>
+          <a href="/shop" class="inline-flex items-center text-sage-600 font-semibold hover:text-sage-700">
+            View all products
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProducts.map((product) => (
+            <div class="group">
+              <a href={`/product/${product.slug}`} class="block h-full bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+                <div class="aspect-square bg-warm-gray-50 relative overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-sage-100/50 to-warm-gray-100/50 group-hover:opacity-90 transition-opacity"></div>
+                  <div class="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    {/* Replace this placeholder with actual product images */}
+                    <div class="relative w-3/4 h-3/4">
+                      <div class="w-full h-full bg-warm-gray-200 rounded-lg shadow-lg flex items-center justify-center">
+                        <span class="text-warm-gray-600 font-medium">{product.name}</span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Badge for special states */}
+                  {(!product.inStock || product.originalPrice) && (
+                    <div class="absolute top-4 right-4">
+                      {!product.inStock ? (
+                        <span class="bg-warm-gray-900/90 text-white px-3 py-1 text-sm font-medium rounded-full">
+                          Out of Stock
+                        </span>
+                      ) : product.originalPrice && (
+                        <span class="bg-sage-600/90 text-white px-3 py-1 text-sm font-medium rounded-full">
+                          Sale
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+                <div class="p-6 space-y-4">
+                  <div>
+                    <h3 class="font-display text-xl font-semibold text-warm-gray-900 group-hover:text-sage-600 transition-colors">
+                      {product.name}
+                    </h3>
+                    <p class="mt-2 text-warm-gray-600 text-sm line-clamp-2">
+                      {product.description}
+                    </p>
+                  </div>
+                  
+                  <div class="space-y-3">
+                    {/* Product Features */}
+                    {product.features && (
+                      <div class="flex flex-wrap gap-2">
+                        {product.features.slice(0, 2).map((feature) => (
+                          <span class="inline-block px-2 py-1 text-xs bg-warm-gray-100 text-warm-gray-700 rounded-full">
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    
+                    {/* Price and CTA */}
+                    <div class="flex items-center justify-between border-t border-warm-gray-100 pt-4">
+                      <div class="flex items-baseline gap-2">
+                        {product.originalPrice && (
+                          <span class="text-sm text-warm-gray-400 line-through">${product.originalPrice}</span>
+                        )}
+                        <span class="text-lg font-semibold text-warm-gray-900">${product.price}</span>
+                      </div>
+                      <span class="text-sage-600 font-medium group-hover:underline">View Details →</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

@@ -1,78 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import products from '../data/products.json';
-import categories from '../data/categories.json';
+// Redirect /shop to the new dynamic shop route
+export const prerender = false;
 
-const { searchParams } = Astro.url;
-const category = searchParams.get('category');
-const filteredProducts = category 
-  ? products.filter(product => product.category === category)
-  : products;
-
-const currentCategory = categories.find(cat => cat.slug === category);
+if (Astro.request.url.includes('?category=')) {
+  // Extract category from URL and redirect to new format
+  const url = new URL(Astro.request.url);
+  const category = url.searchParams.get('category');
+  return Astro.redirect(`/shop/${category}`);
+} else {
+  // Redirect to main shop page
+  return Astro.redirect('/shop/all');
+}
 ---
 
-<Layout title={`${currentCategory?.name || 'Shop'} - Premium Workspace Essentials`}>
-  <section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-12">
-        <h1 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
-          {currentCategory?.name || 'All Products'}
-        </h1>
-        <p class="text-lg text-warm-gray-600 max-w-2xl">
-          Discover our curated collection of premium workspace essentials, each designed to elevate your daily experience.
-        </p>
-      </div>
-
-      <!-- Filter Bar -->
-      <div class="flex flex-wrap gap-4 mb-12 pb-6 border-b border-warm-gray-200">
-        <a 
-          href="/shop" 
-          class={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${!category ? 'bg-warm-gray-900 text-white' : 'bg-warm-gray-100 text-warm-gray-700 hover:bg-warm-gray-200'}`}
-        >
-          All Products
-        </a>
-        <a 
-          href="/shop?category=backpacks" 
-          class={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${category === 'backpacks' ? 'bg-warm-gray-900 text-white' : 'bg-warm-gray-100 text-warm-gray-700 hover:bg-warm-gray-200'}`}
-        >
-          Backpacks
-        </a>
-      </div>
-
-      <!-- Products Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProducts.map((product) => (
-          <div class="group cursor-pointer">
-            <a href={`/product/${product.slug}`}>
-              <div class="aspect-square bg-warm-gray-100 mb-4 overflow-hidden">
-                <div class="w-full h-full bg-gradient-to-br from-sage-200 to-warm-gray-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                  <span class="text-warm-gray-600 font-medium">{product.name}</span>
-                </div>
-              </div>
-              <div class="space-y-2">
-                <h3 class="font-display text-xl font-semibold text-warm-gray-900 group-hover:text-sage-600 transition-colors">
-                  {product.name}
-                </h3>
-                <p class="text-warm-gray-600 text-sm leading-relaxed">
-                  {product.description}
-                </p>
-                <div class="flex items-center justify-between pt-2">
-                  <div class="flex items-center space-x-2">
-                    {product.originalPrice && (
-                      <span class="text-warm-gray-400 line-through text-sm">${product.originalPrice}</span>
-                    )}
-                    <span class="text-lg font-semibold text-warm-gray-900">${product.price}</span>
-                  </div>
-                  {!product.inStock && (
-                    <span class="text-red-500 text-sm font-medium">Out of Stock</span>
-                  )}
-                </div>
-              </div>
-            </a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-</Layout>
+Loading...
