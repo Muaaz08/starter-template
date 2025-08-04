@@ -1,0 +1,59 @@
+---
+import products from '../data/products.json';
+import categories from '../data/categories.json';
+
+const productsByCategory = products.reduce((acc: Record<string, typeof products[number][]>, product) => {
+  if (!acc[product.category]) {
+    acc[product.category] = [];
+  }
+  acc[product.category].push(product);
+  return acc;
+}, {});
+---
+
+<!-- Product Categories -->
+  <section id="categories" class="py-20 snap-start">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
+          Shop by Category
+        </h2>
+        <p class="text-lg text-warm-gray-600 max-w-2xl mx-auto">
+          Discover our curated collection of workspace essentials, each designed to elevate your professional environment.
+        </p>
+      </div>
+
+      <!-- Category Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {categories.map((category) => (
+          <div class="group cursor-pointer">
+            <a href={`/shop/${category.slug}`} class="block">
+              <div class="aspect-[4/3] bg-white mb-6 overflow-hidden rounded-2xl">
+                <div class="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-700 relative">
+                  {/* Placeholder for category image - replace with actual images */}
+                  <div class="absolute inset-0 bg-gradient-to-br from-warm-gray-100 to-sage-100 group-hover:opacity-80 transition-opacity"></div>
+                  <div class="relative z-10 text-center">
+                    <div class="w-24 h-24 bg-warm-gray-800 rounded-xl mx-auto mb-4 shadow-lg"></div>
+                    <h3 class="font-display text-2xl font-semibold text-warm-gray-900 group-hover:text-sage-600 transition-colors">
+                      {category.name}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <p class="text-warm-gray-600 leading-relaxed">
+                  {category.description}
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-warm-gray-500">
+                    {productsByCategory[category.slug]?.length || 0} Products
+                  </span>
+                  <span class="text-sage-600 font-medium group-hover:underline">Browse Collection →</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
