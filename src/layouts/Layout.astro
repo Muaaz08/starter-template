@@ -74,8 +74,9 @@ const {
             </a>
           </div>
           
+          {/* Desktop Navigation */}
           <div class="hidden md:block nav-links">
-            <div class="ml-10 flex items-baseline space-x-8">
+            <div class="ml-10 flex items-center space-x-8">
               <a href="/" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>Home</a>
               <a href="/shop" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>Shop</a>
               <a href="/journal" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>Journal</a>
@@ -84,16 +85,49 @@ const {
             </div>
           </div>
           
-          <div class="flex items-center space-x-4">
-            <button class={`transition-colors ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          <div class="flex items-center">
+            {/* Mobile Menu Button */}
+            <button 
+              id="mobile-menu-button"
+              class={`md:hidden transition-colors ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}
+              aria-label="Menu"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
           </div>
         </div>
       </div>
     </nav>
+
+    {/* Mobile Menu Overlay */}
+    <div id="mobile-menu" class="fixed inset-0 z-50 transform transition-transform duration-300 translate-x-full">
+      <div class="absolute inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+      <div class="absolute right-0 top-0 h-full w-64 bg-white transform transition-transform duration-300 translate-x-full">
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-8">
+            <span class="font-display font-bold text-xl text-warm-gray-900">Menu</span>
+            <button 
+              id="close-mobile-menu"
+              class="text-warm-gray-600 hover:text-warm-gray-900 transition-colors"
+              aria-label="Close menu"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <nav class="space-y-4">
+            <a href="/" class="block text-warm-gray-600 hover:text-warm-gray-900 transition-colors py-2 text-sm font-medium">Home</a>
+            <a href="/shop" class="block text-warm-gray-600 hover:text-warm-gray-900 transition-colors py-2 text-sm font-medium">Shop</a>
+            <a href="/journal" class="block text-warm-gray-600 hover:text-warm-gray-900 transition-colors py-2 text-sm font-medium">Journal</a>
+            <a href="/about" class="block text-warm-gray-600 hover:text-warm-gray-900 transition-colors py-2 text-sm font-medium">About</a>
+            <a href="/faq" class="block text-warm-gray-600 hover:text-warm-gray-900 transition-colors py-2 text-sm font-medium">FAQ</a>
+          </nav>
+        </div>
+      </div>
+    </div>
     
     <main>
       <slot />
@@ -145,5 +179,43 @@ const {
         </div>
       </div>
     </footer>
+
+    <script>
+      // Mobile menu functionality
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const closeMenuButton = document.getElementById('close-mobile-menu');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuContent = mobileMenu?.querySelector('div:last-child');
+      
+      function openMobileMenu() {
+        document.body.style.overflow = 'hidden';
+        mobileMenu?.classList.remove('translate-x-full');
+        if (mobileMenuContent) {
+          setTimeout(() => {
+            mobileMenuContent.classList.remove('translate-x-full');
+          }, 100);
+        }
+      }
+      
+      function closeMobileMenu() {
+        if (mobileMenuContent) {
+          mobileMenuContent.classList.add('translate-x-full');
+          setTimeout(() => {
+            mobileMenu?.classList.add('translate-x-full');
+            document.body.style.overflow = '';
+          }, 300);
+        }
+      }
+
+      mobileMenuButton?.addEventListener('click', openMobileMenu);
+      closeMenuButton?.addEventListener('click', closeMobileMenu);
+      
+      // Close menu when clicking outside
+      mobileMenu?.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+          closeMobileMenu();
+        }
+      });
+    </script>
   </body>
 </html>
