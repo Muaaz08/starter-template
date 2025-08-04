@@ -31,7 +31,108 @@ const {
   </head>
   <body class="font-sans bg-editorial text-warm-gray-900">
     
-    <Header />
+    {isHome && (
+      <script>
+        // Add backdrop when scrolled (only on home page)
+        window.addEventListener('scroll', () => {
+          const nav = document.querySelector('nav');
+          const logo = nav?.querySelector('a');
+          const links = nav?.querySelectorAll('.nav-links a, button');
+          if (!nav || !logo || !links) return;
+          
+          if (window.scrollY > 0) {
+            nav.classList.add('bg-white/80', 'backdrop-blur-md', 'border-b', 'border-warm-gray-200');
+            nav.classList.remove('bg-transparent');
+            
+            // Update text colors
+            logo.classList.remove('text-white');
+            logo.classList.add('text-warm-gray-900');
+            
+            links.forEach(link => {
+              link.classList.remove('text-white', 'hover:text-sage-200');
+              link.classList.add('text-warm-gray-600', 'hover:text-warm-gray-900');
+            });
+          } else {
+            nav.classList.remove('bg-white/80', 'backdrop-blur-md', 'border-b', 'border-warm-gray-200');
+            nav.classList.add('bg-transparent');
+            
+            // Restore text colors
+            logo.classList.add('text-white');
+            logo.classList.remove('text-warm-gray-900');
+            
+            links.forEach(link => {
+              link.classList.add('text-white', 'hover:text-sage-200');
+              link.classList.remove('text-warm-gray-600', 'hover:text-warm-gray-900');
+            });
+          }
+        });
+      </script>
+    )}
+<header>
+    <nav class={`fixed top-0 w-full z-50 transition-all duration-300 ${isHome ? 'bg-transparent' : 'bg-white border-b border-warm-gray-200'}`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/" class={`font-display font-bold text-xl ${isHome ? 'text-white' : 'text-warm-gray-900'}`}>
+              Essentials
+            </a>
+          </div>
+          
+          {/* Desktop Navigation */}
+          <div class="hidden md:block nav-links">
+            <div class="ml-10 flex items-center space-x-8">
+              <a href="/" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>Home</a>
+              <a href="/shop" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>Shop</a>
+              <a href="/journal" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>Journal</a>
+              <a href="/about" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>About</a>
+              <a href="/faq" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>FAQ</a>
+            </div>
+          </div>
+          
+          <div class="flex items-center">
+            {/* Mobile Menu Button */}
+            <button 
+              id="mobile-menu-button"
+              class={`md:hidden transition-colors ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}
+              aria-label="Menu"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    {/* Mobile Menu Overlay */}
+    <div id="mobile-menu" class="fixed inset-0 z-50 transform transition-transform duration-300 translate-x-full">
+      <div class="absolute inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+      <div class="absolute right-0 top-0 h-full w-64 bg-white transform transition-transform duration-300 translate-x-full">
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-8">
+            <span class="font-display font-bold text-xl text-warm-gray-900">Menu</span>
+            <button 
+              id="close-mobile-menu"
+              class="text-warm-gray-600 hover:text-warm-gray-900 transition-colors"
+              aria-label="Close menu"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <nav class="space-y-4">
+            <a href="/" class="block text-warm-gray-600 hover:text-warm-gray-900 transition-colors py-2 text-sm font-medium">Home</a>
+            <a href="/shop" class="block text-warm-gray-600 hover:text-warm-gray-900 transition-colors py-2 text-sm font-medium">Shop</a>
+            <a href="/journal" class="block text-warm-gray-600 hover:text-warm-gray-900 transition-colors py-2 text-sm font-medium">Journal</a>
+            <a href="/about" class="block text-warm-gray-600 hover:text-warm-gray-900 transition-colors py-2 text-sm font-medium">About</a>
+            <a href="/faq" class="block text-warm-gray-600 hover:text-warm-gray-900 transition-colors py-2 text-sm font-medium">FAQ</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    </header>
     
     <main>
       <slot />
