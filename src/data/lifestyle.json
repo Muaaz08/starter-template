@@ -1,0 +1,20 @@
+[
+  {
+    "id": "modern-workspace",
+    "title": "The Modern Workspace",
+    "description": "From the home office to co-working spaces, our backpacks keep your essentials organized and within reach. The clean aesthetic complements any professional environment while the thoughtful organization system ensures you're always prepared.",
+    "tags": ["Home Office", "Co-working", "Meeting Rooms"],
+    "icon": "location",
+    "image": "/images/workspace-productivity-hero.jpg",
+    "cta": "Explore Workspace Collection"
+  },
+  {
+    "id": "daily-commute",
+    "title": "The Daily Commute",
+    "description": "Whether cycling through the city or catching the morning train, our backpacks are designed for movement. Comfortable straps, secure closures, and weather-resistant materials make every journey effortless.",
+    "tags": ["Bike Commute", "Public Transit", "Walking"],
+    "icon": "lightning",
+    "image": "/images/minimalist-packing-hero.jpg",
+    "cta": "Explore Commute Collection"
+  }
+] 

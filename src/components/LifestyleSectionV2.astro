@@ -1,0 +1,151 @@
+---
+import lifestyleData from '../data/lifestyle.json';
+
+// Helper function to get icon SVG
+function getIconSvg(icon: string) {
+  switch (icon) {
+    case 'location':
+      return `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />`;
+    case 'lightning':
+      return `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />`;
+    case 'heart':
+      return `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />`;
+    default:
+      return `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />`;
+  }
+}
+---
+
+<section id="lifestyle-v2" class="py-20 snap-start">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-3xl font-bold text-warm-gray-900 mb-4">
+        In Your Daily Life
+      </h2>
+      <p class="text-lg text-warm-gray-600 max-w-2xl mx-auto">
+        See how our essentials integrate seamlessly into the moments that matter most.
+      </p>
+    </div>
+    
+    <!-- Desktop: Bendo Card Design -->
+    <div class="hidden md:block">
+      {lifestyleData.map((item, index) => (
+        <div class={`relative ${index < lifestyleData.length - 1 ? 'mb-16' : ''}`}>
+          <div class="grid grid-cols-2 gap-12 items-center">
+            {index % 2 === 0 ? (
+              <>
+                <!-- Image Container -->
+                <div class="relative overflow-hidden rounded-3xl">
+                  <div class="aspect-[4/5] bg-gradient-to-br from-warm-gray-100 to-sage-100 rounded-3xl overflow-hidden">
+                    <img 
+                      src={item.image} 
+                      alt={item.title} 
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                
+                <!-- Text Content -->
+                <div class="text-container">
+                  <div class="space-y-6">
+                    <h3 class="font-display text-3xl font-semibold text-warm-gray-900">
+                      {item.title}
+                    </h3>
+                    <p class="text-lg text-warm-gray-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                    <div class="flex items-center text-sm text-warm-gray-500">
+                      <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <Fragment set:html={getIconSvg(item.icon)} />
+                      </svg>
+                      {item.tags.join(' • ')}
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <!-- Text Content -->
+                <div class="text-container">
+                  <div class="space-y-6">
+                    <h3 class="font-display text-3xl font-semibold text-warm-gray-900">
+                      {item.title}
+                    </h3>
+                    <p class="text-lg text-warm-gray-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                    <div class="flex items-center text-sm text-warm-gray-500">
+                      <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <Fragment set:html={getIconSvg(item.icon)} />
+                      </svg>
+                      {item.tags.join(' • ')}
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Image Container -->
+                <div class="relative overflow-hidden rounded-3xl">
+                  <div class="aspect-[4/5] bg-gradient-to-br from-sage-100 to-warm-gray-100 rounded-3xl overflow-hidden">
+                    <img 
+                      src={item.image} 
+                      alt={item.title} 
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Mobile: Data-Driven Layout -->
+    <div class="md:hidden space-y-12">
+      {lifestyleData.map((item, index) => (
+        <div class="text-center">
+          <div class="aspect-[4/3] bg-gradient-to-br from-warm-gray-100 to-sage-100 rounded-2xl overflow-hidden mb-6">
+            <img 
+                      src={item.image} 
+                      alt={item.title} 
+                      class="w-full h-full object-cover"
+                    />
+          </div>
+          <div class="space-y-3">
+            <h3 class="font-display text-xl font-semibold text-warm-gray-900">
+              {item.title}
+            </h3>
+            <p class="text-warm-gray-600 leading-relaxed text-sm">
+              {item.description}
+            </p>
+            <div class="flex items-center justify-center text-xs text-warm-gray-500">
+              <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <Fragment set:html={getIconSvg(item.icon)} />
+              </svg>
+              {item.tags.join(' • ')}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  
+  /* Ensure images maintain aspect ratio and cover properly */
+  .aspect-\[4\/5\] img {
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  /* Add subtle hover effects for desktop cards */
+  @media (min-width: 768px) {
+    .grid > div:hover img {
+      transform: scale(1.05);
+      transition: transform 0.3s ease-out;
+    }
+  }
+</style> 
