@@ -14,9 +14,9 @@ const productsByCategory = products.reduce((acc: Record<string, typeof products[
 
 <Layout title="Essentials - Premium Workspace Essentials" isHome={true}>
   <!-- Enable scroll snapping on the main container -->
-  <div class="snap-y snap-mandatory h-screen overflow-y-auto overflow-x-hidden scroll-smooth">
+  <div class="snap-y snap-mandatory h-screen overflow-y-auto overflow-x-hidden">
     <!-- Hero Section -->
-    <section id="hero" class="relative h-screen min-h-screen snap-start snap-always">
+    <section id="hero" class="relative h-screen snap-start">
       <!-- Video Background -->
       <div class="absolute inset-0 w-full h-full">
         <video 
@@ -75,8 +75,8 @@ const productsByCategory = products.reduce((acc: Record<string, typeof products[
   </section>
 
   <!-- Feature Highlights -->
-  <section id="features" class="min-h-screen flex items-center bg-gradient-to-b from-sage-50/50 to-warm-gray-50/50 snap-start snap-always py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+  <section id="features" class="py-20 bg-gradient-to-b from-sage-50/50 to-warm-gray-50/50 snap-start">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="font-display text-3xl font-bold text-warm-gray-900 mb-4">
           Designed for Life
@@ -142,8 +142,8 @@ const productsByCategory = products.reduce((acc: Record<string, typeof products[
   </section>
 
   <!-- Lifestyle Section -->
-  <section id="lifestyle" class="min-h-screen flex items-center snap-start snap-always py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+  <section id="lifestyle" class="py-20 snap-start">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="font-display text-3xl font-bold text-warm-gray-900 mb-4">
           In Your Daily Life
@@ -286,8 +286,8 @@ const productsByCategory = products.reduce((acc: Record<string, typeof products[
   </section>
 
   <!-- Product Categories -->
-  <section id="categories" class="min-h-screen flex items-center snap-start snap-always py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+  <section id="categories" class="py-20 snap-start">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="font-display text-4xl font-bold text-warm-gray-900 mb-4">
           Shop by Category
