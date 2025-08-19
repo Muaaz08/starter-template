@@ -29,7 +29,8 @@
       "/images/CHAIR-1.4.webp"
     ],
     "colors": ["#000", "#410200", "#345"],
-    "inStock": true
+    "inStock": true,
+    "externalLink": "https://example.com/ergonomic-task-chair"
   },
   {
     "id": "executive-leather-chair",
@@ -62,7 +63,8 @@
       "/images/CHAIR-2.5.webp"
     ],
     "colors": ["#000", "#333", "#666"],
-    "inStock": true
+    "inStock": true,
+    "externalLink": "https://example.com/executive-leather-chair"
   },
   {
     "id": "executive-briefpack",
@@ -94,6 +96,7 @@
       "/images/BACKPACK-1.4.webp"
     ],
     "colors": ["Black", "Cognac"],
-    "inStock": true
+    "inStock": true,
+    "externalLink": "https://example.com/executive-briefpack"
   }
 ]
