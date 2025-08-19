@@ -140,13 +140,14 @@ const { product, relatedProducts } = Astro.props;
               <!-- Product Images Carousel -->
         <div class="relative space-y-4">
           <!-- Main Image -->
-          <div class="aspect-square bg-warm-gray-100 overflow-hidden rounded-2xl relative group">
+          <div class="aspect-square bg-white overflow-hidden rounded-2xl relative group">
             <div class="swiper-container">
               <div class="swiper-wrapper">
-                {[1, 2, 3, 4].map((i) => (
+                {product.images.map((img) => (
                   <div class="swiper-slide">
-                    <div class="aspect-square bg-gradient-to-br from-sage-200 to-warm-gray-200 flex items-center justify-center">
-                      <span class="text-warm-gray-600 font-medium text-xl">{product.name} - View {i}</span>
+                    <div class="aspect-square bg-white flex items-center justify-center">
+                      {/* <span class="text-warm-gray-600 font-medium text-xl">{product.name} - View {i}</span> */}
+                      <img src={img} alt={img} class="w-full h-full object-contain" />
                     </div>
                   </div>
                 ))}
@@ -175,10 +176,11 @@ const { product, relatedProducts } = Astro.props;
 
           <!-- Thumbnail Navigation - Desktop Only -->
           <div class="hidden md:grid grid-cols-4 gap-4">
-            {[1, 2, 3, 4].map((i) => (
+            {product.images.map((img) => (
               <button class="aspect-square bg-warm-gray-100 rounded-lg cursor-pointer hover:opacity-75 transition-opacity focus:outline-none focus:ring-2 focus:ring-sage-500">
-                <div class="w-full h-full bg-gradient-to-br from-sage-100 to-warm-gray-100 flex items-center justify-center rounded-lg">
-                  <span class="text-warm-gray-500 text-xs">View {i}</span>
+                <div class="w-full h-full bg-white flex items-center justify-center rounded-lg">
+                  {/* <span class="text-warm-gray-500 text-xs">View {i}</span> */}
+                  <img src={img} alt={img} class="w-full h-full object-contain" />
                 </div>
               </button>
             ))}
@@ -222,8 +224,7 @@ const { product, relatedProducts } = Astro.props;
               <h3 class="text-lg font-semibold text-warm-gray-900 mb-3">Available Colors</h3>
               <div class="flex space-x-3">
                 {product.colors.map((color) => (
-                  <button class="w-8 h-8 rounded-full border-2 border-warm-gray-300 bg-warm-gray-200 hover:border-sage-500 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sage-500">
-                    <span class="sr-only">{color}</span>
+                  <button class="w-8 h-8 rounded-full border-2 border-warm-gray-300 bg-warm-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sage-500" style={{ backgroundColor: color }}>
                   </button>
                 ))}
               </div>
@@ -367,14 +368,14 @@ const { product, relatedProducts } = Astro.props;
           {relatedProducts.map((relatedProduct) => (
             <div class="group">
               <a href={`/product/${relatedProduct.slug}`} class="block h-full bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
-                <div class="aspect-square bg-warm-gray-50 relative overflow-hidden">
-                  <div class="absolute inset-0 bg-gradient-to-br from-sage-100/50 to-warm-gray-100/50 group-hover:opacity-90 transition-opacity"></div>
+                <div class="aspect-square bg-white relative overflow-hidden">
+                  <div class="absolute inset-0 group-hover:opacity-90 transition-opacity"></div>
                   <div class="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                    <div class="relative w-3/4 h-3/4">
-                      <div class="w-full h-full bg-warm-gray-200 rounded-lg shadow-lg flex items-center justify-center">
-                        <span class="text-warm-gray-600 font-medium">{relatedProduct.name}</span>
-                      </div>
-                    </div>
+                    <img 
+                      src={product.images[0]} 
+                      alt={product.name}
+                      class="w-3/4 h-full object-contain"
+                    />
                   </div>
                   {/* Badge for special states */}
                   {(!relatedProduct.inStock || relatedProduct.originalPrice) && (

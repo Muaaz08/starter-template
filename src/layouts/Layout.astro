@@ -9,7 +9,7 @@ export interface Props {
 
 const { 
   title, 
-  description = "Premium workspace essentials designed for the modern professional.",
+  description = "Semi Premium workspace essentials designed for the modern professional.",
   isHome = false
 } = Astro.props;
 ---
@@ -73,7 +73,7 @@ const {
         <div class="flex justify-between items-center h-16">
           <div class="flex items-center">
             <a href="/" class={`font-display font-bold text-xl ${isHome ? 'text-white' : 'text-warm-gray-900'}`}>
-              Essentials
+              Deskribe
             </a>
           </div>
           
@@ -81,7 +81,7 @@ const {
           <div class="hidden md:block nav-links">
             <div class="ml-10 flex items-center space-x-8">
               <a href="/" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>Home</a>
-              <a href="/shop" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>Shop</a>
+              <a href="/shop/all" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>Shop</a>
               <a href="/journal" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>Journal</a>
               <a href="/about" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>About</a>
               <a href="/faq" class={`transition-colors px-3 py-2 text-sm font-medium ${isHome ? 'text-white hover:text-sage-200' : 'text-warm-gray-600 hover:text-warm-gray-900'}`}>FAQ</a>

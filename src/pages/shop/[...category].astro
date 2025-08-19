@@ -35,7 +35,7 @@ if (category && !isMainShop && !currentCategory) {
 }
 ---
 
-<Layout title={`${currentCategory?.name || 'Shop'} - Premium Workspace Essentials`}>
+<Layout title={`${currentCategory?.name || 'Shop'} - Semi Premium Workspace Essentials`}>
     <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Mobile: Category Filter Accordion -->
@@ -146,15 +146,14 @@ if (category && !isMainShop && !currentCategory) {
           {filteredProducts.map((product) => (
             <div class="group">
               <a href={`/product/${product.slug}`} class="block h-full bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
-                <div class="aspect-square bg-warm-gray-50 relative overflow-hidden">
-                  <div class="absolute inset-0 bg-gradient-to-br from-sage-100/50 to-warm-gray-100/50 group-hover:opacity-90 transition-opacity"></div>
+                <div class="aspect-square bg-white relative overflow-hidden">
+                  <div class="absolute inset-0 group-hover:opacity-90 transition-opacity"></div>
                   <div class="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                    {/* Replace this placeholder with actual product images */}
-                    <div class="relative w-3/4 h-3/4">
-                      <div class="w-full h-full bg-warm-gray-200 rounded-lg shadow-lg flex items-center justify-center">
-                        <span class="text-warm-gray-600 font-medium">{product.name}</span>
-                      </div>
-                    </div>
+                    <img 
+                      src={product.images[0]} 
+                      alt={product.name}
+                      class="w-3/4 h-full object-contain"
+                    />
                   </div>
                   {/* Badge for special states */}
                   {(!product.inStock || product.originalPrice) && (

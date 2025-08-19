@@ -10,11 +10,5 @@
     "slug": "chairs",
     "description": "Thoughtfully designed seating that supports your best work, engineered for all-day comfort.",
     "image": "/images/category-chairs.jpg"
-  },
-  {
-    "name": "Work Accessories",
-    "slug": "accessories",
-    "description": "Essential tools and accessories that enhance your workspace and streamline your workflow.",
-    "image": "/images/category-accessories.jpg"
   }
 ]
