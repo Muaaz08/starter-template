@@ -6,7 +6,6 @@
     "price": 599,
     "originalPrice": 699,
     "category": "chairs",
-    "featured": true,
     "description": "Premium ergonomic task chair with adaptive support and intuitive adjustments for all-day comfort.",
     "longDescription": "Designed for the modern professional who demands both comfort and style. This task chair features advanced ergonomic adjustments, breathable mesh construction, and sophisticated aesthetics that complement any workspace.",
     "features": [
@@ -39,7 +38,6 @@
     "price": 899,
     "originalPrice": null,
     "category": "chairs",
-    "featured": true,
     "description": "Luxurious full-grain leather executive chair combining timeless elegance with modern ergonomic principles.",
     "longDescription": "The Executive Leather Chair represents the pinnacle of office seating. Hand-selected full-grain leather, polished aluminum accents, and advanced comfort features create an exceptional seating experience for the discerning professional.",
     "features": [
@@ -73,7 +71,103 @@
     "price": 279,
     "originalPrice": 320,
     "category": "backpacks",
-    "featured": true,
+    "description": "Where traditional briefcase elegance meets modern backpack functionality. For the discerning professional.",
+    "longDescription": "The Executive Briefpack challenges conventional thinking about professional carry. This hybrid design combines the formal aesthetic of a traditional briefcase with the ergonomic benefits of a backpack. Premium full-grain leather construction ensures this piece will age beautifully while serving as your trusted work companion.",
+    "features": [
+      "Full-grain leather construction",
+      "Convertible carry system (briefcase/backpack)",
+      "Premium brass hardware",
+      "Organized interior with document sleeves",
+      "TSA-friendly laptop compartment"
+    ],
+    "specifications": {
+      "dimensions": "16\" x 11\" x 4\"",
+      "weight": "3.2 lbs",
+      "capacity": "18L",
+      "material": "Full-grain leather"
+    },
+    "images": [
+      "/images/BACKPACK-1.1.webp",
+      "/images/BACKPACK-1.2.webp",
+      "/images/BACKPACK-1.3.webp",
+      "/images/BACKPACK-1.4.webp"
+    ],
+    "colors": ["Black", "Cognac"],
+    "inStock": true,
+    "externalLink": "https://example.com/executive-briefpack"
+  },
+  {
+    "id": "ergonomic-task-chair",
+    "slug": "ergonomic-task-chair",
+    "name": "Ergonomic Task Chair",
+    "price": 599,
+    "originalPrice": 699,
+    "category": "chairs",
+    "description": "Premium ergonomic task chair with adaptive support and intuitive adjustments for all-day comfort.",
+    "longDescription": "Designed for the modern professional who demands both comfort and style. This task chair features advanced ergonomic adjustments, breathable mesh construction, and sophisticated aesthetics that complement any workspace.",
+    "features": [
+      "Adaptive lumbar support system",
+      "4D adjustable armrests",
+      "Synchronized tilt mechanism",
+      "Breathable mesh back",
+      "Memory foam seat cushion"
+    ],
+    "specifications": {
+      "dimensions": "28\"W x 28\"D x 48\"H",
+      "weight": "35 lbs",
+      "seatHeight": "16-21\"",
+      "material": "Premium mesh, aluminum base"
+    },
+    "images": [
+      "/images/CHAIR-1.1.webp",
+      "/images/CHAIR-1.2.webp",
+      "/images/CHAIR-1.3.webp",
+      "/images/CHAIR-1.4.webp"
+    ],
+    "colors": ["#000", "#410200", "#345"],
+    "inStock": true,
+    "externalLink": "https://example.com/ergonomic-task-chair"
+  },
+  {
+    "id": "executive-leather-chair",
+    "slug": "executive-leather-chair",
+    "name": "Executive Leather Chair",
+    "price": 899,
+    "originalPrice": null,
+    "category": "chairs",
+    "description": "Luxurious full-grain leather executive chair combining timeless elegance with modern ergonomic principles.",
+    "longDescription": "The Executive Leather Chair represents the pinnacle of office seating. Hand-selected full-grain leather, polished aluminum accents, and advanced comfort features create an exceptional seating experience for the discerning professional.",
+    "features": [
+      "Premium full-grain leather upholstery",
+      "Multi-tilt mechanism with position lock",
+      "Waterfall seat edge design",
+      "Adjustable lumbar support",
+      "Polished aluminum base and accents"
+    ],
+    "specifications": {
+      "dimensions": "30\"W x 32\"D x 50\"H",
+      "weight": "45 lbs",
+      "seatHeight": "17-22\"",
+      "material": "Full-grain leather, aluminum"
+    },
+    "images": [
+      "/images/CHAIR-2.1.webp",
+      "/images/CHAIR-2.2.webp",
+      "/images/CHAIR-2.3.webp",
+      "/images/CHAIR-2.4.webp",
+      "/images/CHAIR-2.5.webp"
+    ],
+    "colors": ["#000", "#333", "#666"],
+    "inStock": true,
+    "externalLink": "https://example.com/executive-leather-chair"
+  },
+  {
+    "id": "executive-briefpack",
+    "slug": "executive-briefpack",
+    "name": "Executive Briefpack",
+    "price": 279,
+    "originalPrice": 320,
+    "category": "backpacks",
     "description": "Where traditional briefcase elegance meets modern backpack functionality. For the discerning professional.",
     "longDescription": "The Executive Briefpack challenges conventional thinking about professional carry. This hybrid design combines the formal aesthetic of a traditional briefcase with the ergonomic benefits of a backpack. Premium full-grain leather construction ensures this piece will age beautifully while serving as your trusted work companion.",
     "features": [
