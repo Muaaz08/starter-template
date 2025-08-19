@@ -9,7 +9,7 @@
     "publishedAt": "2024-01-15",
     "readTime": "8 min read",
     "category": "Travel",
-    "image": "/images/minimalist-packing-hero.jpg"
+    "image": "/images/minimalist-packing-hero.webp"
   },
   {
     "id": "workspace-productivity",
@@ -21,7 +21,7 @@
     "publishedAt": "2024-01-08",
     "readTime": "6 min read",
     "category": "Productivity",
-    "image": "/images/workspace-productivity-hero.jpg"
+    "image": "/images/workspace-productivity-hero.webp"
   },
   {
     "id": "sustainable-materials",
@@ -33,7 +33,7 @@
     "publishedAt": "2024-01-01",
     "readTime": "10 min read",
     "category": "Sustainability",
-    "image": "/images/sustainable-materials-hero.jpg"
+    "image": "/images/sustainable-materials-hero.webp"
   },
   {
     "id": "minimalist-packing",
@@ -45,6 +45,6 @@
     "publishedAt": "2024-01-01",
     "readTime": "8 min read",
     "category": "Travel",
-    "image": "/images/minimalist-packing-hero.jpg"
+    "image": "/images/minimalist-packing-hero.webp"
   }
 ]

@@ -1,14 +1,14 @@
 [
   {
-    "name": "Professional Backpacks",
-    "slug": "backpacks",
-    "description": "Premium carry solutions for the modern professional, from minimal daily packs to executive briefcases.",
-    "image": "/images/category-backpacks.jpg"
-  },
-  {
     "name": "Ergonomic Chairs",
     "slug": "chairs",
     "description": "Thoughtfully designed seating that supports your best work, engineered for all-day comfort.",
-    "image": "/images/category-chairs.jpg"
+    "image": "/images/category-chairs.webp"
+  },
+  {
+    "name": "Professional Backpacks",
+    "slug": "backpacks",
+    "description": "Premium carry solutions for the modern professional, from minimal daily packs to executive briefcases.",
+    "image": "/images/category-backpacks.webp"
   }
 ]
