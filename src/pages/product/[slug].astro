@@ -295,7 +295,7 @@ const { product, relatedProducts } = Astro.props;
                     {Object.entries(product.specifications).map(([key, value]) => (
                       <div class="py-3 flex justify-between">
                         <dt class="font-medium text-warm-gray-500 capitalize">{key}</dt>
-                        <dd class="text-warm-gray-900">{value}</dd>
+                        <dd class="text-warm-gray-900 text-right">{value}</dd>
                       </div>
                     ))}
                   </dl>
