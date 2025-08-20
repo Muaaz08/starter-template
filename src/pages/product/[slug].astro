@@ -1,6 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import products from '../../data/products.json';
+// Import Swiper styles and components
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/thumbs';
 
 export function getStaticPaths() {
   return products.map((product) => ({
@@ -18,108 +23,100 @@ const { product, relatedProducts } = Astro.props;
 ---
 
 <script>
-  // Initialize Swiper when the page loads
-  let currentSlide = 0;
-  const totalSlides = document.querySelectorAll('.swiper-slide').length;
-  const swiperWrapper = document.querySelector('.swiper-wrapper');
-  const thumbnails = document.querySelectorAll('.grid-cols-4 button');
-  const prevButton = document.querySelector('.swiper-container button:first-child');
-  const nextButton = document.querySelector('.swiper-container button:last-child');
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, Thumbs } from 'swiper/modules';
 
-  // Handle thumbnail clicks
-  thumbnails.forEach((thumb, index) => {
-    thumb.addEventListener('click', () => {
-      goToSlide(index);
+  // Initialize main swiper and thumbs swiper when the page loads
+  let mainSwiper: Swiper;
+  let thumbsSwiper: Swiper;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize thumbnail swiper
+    thumbsSwiper = new Swiper('.thumbs-swiper', {
+      modules: [Navigation],
+      spaceBetween: 10,
+      slidesPerView: 4,
+      watchSlidesProgress: true,
+    });
+
+    // Initialize main swiper
+    mainSwiper = new Swiper('.main-swiper', {
+      modules: [Navigation, Pagination, Thumbs],
+      spaceBetween: 0,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true,
+      },
+      thumbs: {
+        swiper: thumbsSwiper,
+      },
+      grabCursor: true,
+      breakpoints: {
+        // Mobile first
+        320: {
+          pagination: {
+            enabled: true,
+          },
+        },
+        // Desktop
+        768: {
+          pagination: {
+            enabled: false,
+          },
+        },
+      },
     });
   });
-
-  // Previous slide
-  prevButton?.addEventListener('click', () => {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    goToSlide(currentSlide);
-  });
-
-  // Next slide
-  nextButton?.addEventListener('click', () => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    goToSlide(currentSlide);
-  });
-
-  // Touch handling for mobile
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  swiperWrapper?.addEventListener('touchstart', (e) => {
-    const touchEvent = e as TouchEvent;
-    touchStartX = touchEvent.changedTouches[0].screenX;
-  });
-
-  swiperWrapper?.addEventListener('touchend', (e) => {
-    const touchEvent = e as TouchEvent;
-    touchEndX = touchEvent.changedTouches[0].screenX;
-    handleSwipe();
-  });
-
-  function handleSwipe() {
-    const swipeThreshold = 50;
-    const diff = touchEndX - touchStartX;
-
-    if (Math.abs(diff) > swipeThreshold) {
-      if (diff > 0) {
-        // Swipe right - go to previous
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      } else {
-        // Swipe left - go to next
-        currentSlide = (currentSlide + 1) % totalSlides;
-      }
-      goToSlide(currentSlide);
-    }
-  }
-
-  function goToSlide(index: number) {
-    currentSlide = index;
-    const offset = -100 * currentSlide;
-    if (swiperWrapper) {
-      (swiperWrapper as HTMLElement).style.transform = `translateX(${offset}%)`;
-    }
-    
-    // Update thumbnail states
-    thumbnails.forEach((thumb, i) => {
-      if (i === currentSlide) {
-        thumb.classList.add('ring-2', 'ring-sage-500');
-      } else {
-        thumb.classList.remove('ring-2', 'ring-sage-500');
-      }
-    });
-  }
 </script>
 
-<style>
-  .swiper-container {
+<style is:global>
+  .swiper {
     width: 100%;
-    overflow: hidden;
-  }
-
-  .swiper-wrapper {
-    display: flex;
-    transition: transform 0.3s ease-in-out;
+    height: 100%;
   }
 
   .swiper-slide {
-    flex: 0 0 100%;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
   }
 
-  /* Mobile swipe indicator animation */
-  @media (max-width: 768px) {
-    .swipe-indicator {
-      animation: fadeInOut 2s infinite;
-    }
+  .thumbs-swiper .swiper-slide {
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
   }
 
-  @keyframes fadeInOut {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
+  .thumbs-swiper .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #78716C;
+    background: rgba(255, 255, 255, 0.9);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 18px;
+  }
+
+  .swiper-pagination-bullet {
+    background: #78716C;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #44403C;
   }
 
   /* Accordion animations */
@@ -137,53 +134,39 @@ const { product, relatedProducts } = Astro.props;
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              <!-- Product Images Carousel -->
-        <div class="relative space-y-4">
-          <!-- Main Image -->
+        <!-- Product Images Carousel -->
+        <div class="relative">
+          <!-- Main Image Swiper -->
           <div class="aspect-square bg-white overflow-hidden rounded-2xl relative group">
-            <div class="swiper-container">
+            <div class="main-swiper swiper h-full">
               <div class="swiper-wrapper">
                 {product.images.map((img) => (
                   <div class="swiper-slide">
-                    <div class="aspect-square bg-white flex items-center justify-center">
-                      {/* <span class="text-warm-gray-600 font-medium text-xl">{product.name} - View {i}</span> */}
+                    <img src={img} alt={img} class="w-full h-full object-contain" loading="lazy" />
+                  </div>
+                ))}
+              </div>
+              <!-- Navigation -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <!-- Pagination for mobile -->
+              <div class="swiper-pagination md:hidden"></div>
+            </div>
+          </div>
+
+          <!-- Thumbnail Navigation - Desktop Only -->
+          <div class="hidden md:block mt-4">
+            <div class="thumbs-swiper swiper">
+              <div class="swiper-wrapper">
+                {product.images.map((img) => (
+                  <div class="swiper-slide aspect-square bg-warm-gray-100 rounded-lg cursor-pointer hover:opacity-75 transition-opacity">
+                    <div class="w-full h-full bg-white flex items-center justify-center rounded-lg">
                       <img src={img} alt={img} class="w-full h-full object-contain" loading="lazy" />
                     </div>
                   </div>
                 ))}
               </div>
-              
-              <!-- Navigation Arrows - Desktop Only -->
-              <div class="hidden md:block">
-                <button class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full shadow-lg flex items-center justify-center text-warm-gray-600 hover:text-warm-gray-900 focus:outline-none group-hover:opacity-100 opacity-0 transition-opacity z-10">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                <button class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full shadow-lg flex items-center justify-center text-warm-gray-600 hover:text-warm-gray-900 focus:outline-none group-hover:opacity-100 opacity-0 transition-opacity z-10">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
             </div>
-            
-            <!-- Mobile Swipe Indicator -->
-            <div class="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs px-3 py-1 rounded-full">
-              Swipe to view more
-            </div>
-          </div>
-
-          <!-- Thumbnail Navigation - Desktop Only -->
-          <div class="hidden md:grid grid-cols-4 gap-4">
-            {product.images.map((img) => (
-              <button class="aspect-square bg-warm-gray-100 rounded-lg cursor-pointer hover:opacity-75 transition-opacity focus:outline-none focus:ring-2 focus:ring-sage-500">
-                <div class="w-full h-full bg-white flex items-center justify-center rounded-lg">
-                  {/* <span class="text-warm-gray-500 text-xs">View {i}</span> */}
-                  <img src={img} alt={img} class="w-full h-full object-contain" loading="lazy" />
-                </div>
-              </button>
-            ))}
           </div>
         </div>
 
