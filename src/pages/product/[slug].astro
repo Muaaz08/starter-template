@@ -147,7 +147,7 @@ const { product, relatedProducts } = Astro.props;
                   <div class="swiper-slide">
                     <div class="aspect-square bg-white flex items-center justify-center">
                       {/* <span class="text-warm-gray-600 font-medium text-xl">{product.name} - View {i}</span> */}
-                      <img src={img} alt={img} class="w-full h-full object-contain" />
+                      <img src={img} alt={img} class="w-full h-full object-contain" loading="lazy" />
                     </div>
                   </div>
                 ))}
@@ -180,7 +180,7 @@ const { product, relatedProducts } = Astro.props;
               <button class="aspect-square bg-warm-gray-100 rounded-lg cursor-pointer hover:opacity-75 transition-opacity focus:outline-none focus:ring-2 focus:ring-sage-500">
                 <div class="w-full h-full bg-white flex items-center justify-center rounded-lg">
                   {/* <span class="text-warm-gray-500 text-xs">View {i}</span> */}
-                  <img src={img} alt={img} class="w-full h-full object-contain" />
+                  <img src={img} alt={img} class="w-full h-full object-contain" loading="lazy" />
                 </div>
               </button>
             ))}
@@ -381,6 +381,7 @@ const { product, relatedProducts } = Astro.props;
                       src={product.images[0]} 
                       alt={product.name}
                       class="w-3/4 h-full object-contain"
+                      loading="lazy"
                     />
                   </div>
                   {/* Badge for special states */}

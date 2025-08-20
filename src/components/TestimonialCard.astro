@@ -59,7 +59,7 @@ const { name, role, company, image, quote, rating } = Astro.props;
           src={image}
           alt={name}
           class="w-full h-full object-cover"
-          onerror="this.src='https://placehold.co/100x100?text=🧑'"
+          loading="lazy"
         />
       </div>
       <div>
