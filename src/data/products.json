@@ -162,9 +162,9 @@
     "externalLink": "https://example.com/executive-leather-chair"
   },
   {
-    "id": "executive-briefpack",
-    "slug": "executive-briefpack",
-    "name": "Executive Briefpack",
+    "id": "executive-briefpack-new",
+    "slug": "executive-briefpack-new",
+    "name": "Executive Briefpack New",
     "price": 279,
     "originalPrice": 320,
     "category": "backpacks",
