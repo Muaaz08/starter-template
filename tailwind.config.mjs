@@ -31,6 +31,12 @@ export default {
           800: "#373d37",
           900: "#2f332f",
         },
+        ceruleanBlue: {
+          100: "#00acd1",
+          200: "#008ba3",
+          300: "#008096",
+          400: "#005f73",
+        },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
