@@ -45,5 +45,13 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addBase, theme }) {
+      addBase({
+        ":root": {
+          "--color-ceruleanBlue-300": theme("colors.ceruleanBlue.300"),
+        },
+      });
+    },
+  ],
 };

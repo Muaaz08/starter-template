@@ -1,6 +1,21 @@
 ---
 
 ---
+  <style>
+    .hero-heading {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-display: swap;
+      line-height: 1.2;
+      font-size: clamp(2rem, 5vw, 4.5rem); /* replaces sm: lg: responsive */
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .hero-heading .highlight {
+      color: var(--color-ceruleanBlue-300);
+    }
+  </style>
+
 	<section id="hero" class="relative h-screen snap-start">
 	  <!-- Enable scroll snapping on the main container -->
 	<div class="snap-y snap-mandatory h-screen overflow-y-auto overflow-x-hidden">
@@ -25,10 +40,15 @@
       <!-- Content Overlay -->
       <div class="relative z-10 h-full flex items-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="font-display text-3xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight mb-4 lg:mb-6">
-          Crafting the Perfect
-          <span class="text-ceruleanBlue-300">Workspace</span>
-          Experience
+        <!-- <h1 class="font-display text-3xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight mb-4 lg:mb-6">
+          <span class="inline-block">Crafting the Perfect</span>
+          <span class="inline-block text-ceruleanBlue-300">Workspace</span>
+          <span class="inline-block">Experience</span>
+        </h1> -->
+        <h1 class="hero-heading">
+          <span class="inline-block">Crafting the Perfect</span>
+          <span class="inline-block highlight">Workspace</span>
+          <span class="inline-block">Experience</span>
         </h1>
         <p class="text-sm sm:text-lg lg:text-xl text-white mb-6 lg:mb-8 leading-relaxed max-w-3xl mx-auto px-4">
           Transform your workspace with our thoughtfully curated collection of semi premium essentials. Where style meets functionality.
