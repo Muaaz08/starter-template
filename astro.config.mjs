@@ -6,7 +6,4 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
-  build: {
-    redirects: false,
-  },
 });
